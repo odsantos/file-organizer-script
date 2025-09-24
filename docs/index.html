@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Organizer Script</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        strong {
+            color: #d9534f;
+        }
+        a {
+            color: #0275d8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>File Organizer Script</h1>
+        <p>A simple but powerful Python script to automatically organize the files in a directory into clean, type-based subfolders.</p>
+
+        <h2>What It Does</h2>
+        <p>This script scans a target folder (like your <code>Downloads</code> directory) and moves files into subfolders based on their file type.</p>
+        <ul>
+            <li><code>document.pdf</code> &rarr; <code>PDF Files/</code></li>
+            <li><code>photo.jpg</code> &rarr; <code>JPG Files/</code></li>
+            <li><code>archive.zip</code> &rarr; <code>ZIP Files/</code></li>
+            <li>...and so on!</li>
+        </ul>
+
+        <h2>Requirements</h2>
+        <ul>
+            <li>Python 3 must be installed on your system. You can download it from <a href="https://www.python.org/downloads/" target="_blank">python.org</a>.</li>
+        </ul>
+
+        <h2>How to Use</h2>
+        <ol>
+            <li>Open your terminal or command prompt.</li>
+            <li>Navigate to the <code>file_organizer_script</code> directory.</li>
+            <li>Run the script using the <code>python3</code> command, followed by the path to the directory you want to organize.</li>
+        </ol>
+        <p><strong>It's best to wrap the path in quotes (" "), especially if it contains spaces.</strong></p>
+
+        <p><strong>macOS/Linux Example:</strong></p>
+        <pre><code>python3 organizer.py "/home/yourname/Documents"</code></pre>
+
+        <p><strong>Windows Example:</strong></p>
+        <pre><code>python3 organizer.py "C:\Users\YourName\Downloads"</code></pre>
+
+        <p>The script will then create the necessary folders and move your files.</p>
+
+        <h2>Disclaimer</h2>
+        <p>This script modifies your file system by moving files. It is highly recommended to <strong>back up your important files</strong> before running it for the first time. Use this script at your own risk.</p>
+    </div>
+</body>
+</html>
