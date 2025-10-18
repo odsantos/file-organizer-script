@@ -3,88 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Organizer Script</title>
+    <title>File Organizer Pro</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
+            padding: 0;
+            background-color: #f6f8fa;
+            color: #24292e;
         }
         .container {
             max-width: 800px;
-            margin: auto;
+            margin: 40px auto;
             background: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #e1e4e8;
         }
-        h1, h2 {
-            color: #333;
+        h1, h2, h3 {
+            color: #24292e;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: .3em;
+            margin-top: 24px;
+            margin-bottom: 16px;
         }
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.25em; }
         code {
-            background: #eee;
-            padding: 2px 4px;
-            border-radius: 4px;
+            background: rgba(27,31,35,.05);
+            padding: .2em .4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
         }
         pre {
-            background: #eee;
-            padding: 10px;
-            border-radius: 4px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            background: #f6f8fa;
+            padding: 16px;
+            border-radius: 3px;
+            overflow: auto;
+            line-height: 1.45;
         }
-        strong {
-            color: #d9534f;
+        pre code {
+            background: none;
+            padding: 0;
+            margin: 0;
+            font-size: 100%;
         }
         a {
-            color: #0275d8;
+            color: #0366d6;
             text-decoration: none;
         }
         a:hover {
             text-decoration: underline;
         }
+        .button {
+            display: inline-block;
+            background-color: #2ea44f;
+            color: white;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid rgba(27,31,35,.15);
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #2c974b;
+            text-decoration: none;
+        }
+        ul, ol {
+            padding-left: 2em;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>File Organizer Script</h1>
-        <p>A simple but powerful Python script to automatically organize the files in a directory into clean, type-based subfolders.</p>
+        <h1>File Organizer Pro</h1>
+        <p>A simple but powerful utility to automatically organize the files in a directory into clean, type-based subfolders.</p>
 
-        <h2>What It Does</h2>
-        <p>This script scans a target folder (like your <code>Downloads</code> directory) and moves files into subfolders based on their file type.</p>
+        <h2>Features</h2>
         <ul>
-            <li><code>document.pdf</code> &rarr; <code>PDF Files/</code></li>
-            <li><code>photo.jpg</code> &rarr; <code>JPG Files/</code></li>
-            <li><code>archive.zip</code> &rarr; <code>ZIP Files/</code></li>
-            <li>...and so on!</li>
+            <li><strong>Easy-to-Use Interface</strong>: A simple and clean graphical user interface (GUI).</li>
+            <li><strong>Standalone Executables</strong>: No need to install Python or any other dependencies. Just download and run.</li>
+            <li><strong>Smart Conflict Resolution</strong>: Automatically renames files if a file with the same name already exists in the destination.</li>
+            <li><strong>Convenient</strong>: Defaults to your "Downloads" folder on first launch.</li>
+            <li><strong>Accessible</strong>: Features adjustable font sizes (Small, Medium, Large).</li>
         </ul>
 
-        <h2>Requirements</h2>
+        <h2>Download and Installation</h2>
+        <p>The easiest way to get started is to purchase and download the latest executable for your operating system from our official Gumroad page.</p>
+        <p><a href="https://[YOUR_GUMROAD_LINK_HERE]" class="button">Purchase and Download from Gumroad</a></p>
+        
+        <h3>Instructions:</h3>
         <ul>
-            <li>Python 3 must be installed on your system. You can download it from <a href="https://www.python.org/downloads/" target="_blank">python.org</a>.</li>
+            <li>Download the zip file for your operating system from the releases page.</li>
+            <li>Unzip the downloaded file.</li>
+            <li><strong>Windows</strong>: Double-click the <code>organizer.exe</code> file.</li>
+            <li><strong>macOS</strong>: Double-click the <code>organizer.app</code> application. You may need to right-click and select "Open" the first time if you see a security warning.</li>
+            <li><strong>Linux</strong>: Make the <code>organizer</code> file executable (<code>chmod +x organizer</code>) and then run it from your terminal (<code>./organizer</code>).</li>
         </ul>
 
-        <h2>How to Use</h2>
+        <h2>How to Use the App</h2>
         <ol>
-            <li>Open your terminal or command prompt.</li>
-            <li>Navigate to the <code>file_organizer_script</code> directory.</li>
-            <li>Run the script using the <code>python3</code> command, followed by the path to the directory you want to organize.</li>
+            <li>Click the <strong>"Browse..."</strong> button to select the directory you want to organize.</li>
+            <li>Click the <strong>"Organize Files"</strong> button to start the process.</li>
+            <li>A confirmation message will show you a log of what was moved.</li>
         </ol>
-        <p><strong>It's best to wrap the path in quotes (" "), especially if it contains spaces.</strong></p>
-
-        <p><strong>macOS/Linux Example:</strong></p>
-        <pre><code>python3 organizer.py "/home/yourname/Documents"</code></pre>
-
-        <p><strong>Windows Example:</strong></p>
-        <pre><code>python3 organizer.py "C:\Users\YourName\Downloads"</code></pre>
-
-        <p>The script will then create the necessary folders and move your files.</p>
 
         <h2>Disclaimer</h2>
-        <p>This script modifies your file system by moving files. It is highly recommended to <strong>back up your important files</strong> before running it for the first time. Use this script at your own risk.</p>
+        <p>This script helps you organize your files by moving them. As with any tool that modifies your file system, it's always a good idea to be cautious. We recommend you double-check the selected directory before confirming the action.</p>
+
+        <h2>License</h2>
+        <p>This software is a commercial product. Use of this software is subject to the terms and conditions outlined in the <a href="../LICENSE.md">End-User License Agreement (EULA)</a>.</p>
+        <p><small>Developers interested in the source code can find the repository and version history on <a href="https://github.com/odsantos/file-organizer-script">GitHub</a>.</small></p>
     </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
-# File Organizer Script
+# File Organizer Pro
 
-A simple but powerful Python script to automatically organize the files in a directory into clean, type-based subfolders.
+A simple but powerful utility to automatically organize the files in a directory into clean, type-based subfolders.
 
 ## What It Does
 
@@ -11,32 +11,54 @@ This script scans a target folder (like your `Downloads` directory) and moves fi
 - `archive.zip` -> `ZIP Files/`
 - ...and so on!
 
-## Requirements
+## Features
 
-- Python 3 must be installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
+-   **Easy-to-Use Interface**: A simple and clean graphical user interface (GUI).
+-   **Standalone Executables**: No need to install Python or any other dependencies. Just download and run.
+-   **Smart Conflict Resolution**: Automatically renames files if a file with the same name already exists in the destination.
+-   **Convenient**: Defaults to your "Downloads" folder on first launch.
+-   **Accessible**: Features adjustable font sizes (Small, Medium, Large).
 
-## How to Use
+## Installation and Usage
 
-1.  Open your terminal or command prompt.
+### For Most Users (Recommended)
 
-2.  Navigate to the `file_organizer_script` directory.
+The easiest way to get started is to purchase and download the ready-to-use application from our official Gumroad page.
 
-3.  Run the script using the `python3` command, followed by the path to the directory you want to organize.
+1.  **[Purchase and Download from Gumroad](https://[YOUR_GUMROAD_LINK_HERE])**
+2.  Unzip the downloaded file.
+3.  **Windows**: Double-click the `organizer.exe` file.
+4.  **macOS**: Double-click the `organizer.app` application. You may need to right-click and select "Open" the first time if you see a security warning.
+5.  **Linux**: Make the `organizer` file executable (`chmod +x organizer`) and then run it from your terminal (`./organizer`).
 
-    **It's best to wrap the path in quotes (" ")**, especially if it contains spaces.
+### Using the Application
 
-    **macOS/Linux Example:**
+-   Click the **"Browse..."** button to select the directory you want to organize.
+-   Click the **"Organize Files"** button to start the process.
+-   A confirmation message will show you a log of what was moved.
+
+### For Developers (Running from Source)
+
+If you want to run the script directly from the source code, you can clone this repository. For version history and source code archives, please see the **[GitHub Releases page](https://github.com/odsantos/file-organizer-script/releases)**.
+
+#### Requirements
+
+-   Python 3 must be installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
+
+#### Running the Script
+
+1.  Clone the repository.
+2.  Open your terminal or command prompt.
+3.  Navigate to the `file_organizer_script` directory.
+4.  Run the script with the following command:
     ```bash
-    python3 organizer.py "/home/yourname/Documents"
+    python3 organizer.py
     ```
-
-    **Windows Example:**
-    ```bash
-    python3 organizer.py "C:\Users\YourName\Downloads"
-    ```
-
-The script will then create the necessary folders and move your files.
 
 ## Disclaimer
 
-This script modifies your file system by moving files. It is highly recommended to **back up your important files** before running it for the first time. Use this script at your own risk.
+This script helps you organize your files by moving them. As with any tool that modifies your file system, it's always a good idea to be cautious. We recommend you double-check the selected directory before confirming the action.
+
+## License
+
+This software is a commercial product. Use of this software is subject to the terms and conditions outlined in the **[End-User License Agreement (EULA)](LICENSE.md)**.
