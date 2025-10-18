@@ -30,6 +30,7 @@ jobs:
 
       - name: Set PyInstaller data separator
         id: set_separator
+        shell: bash
         run: |
           if [[ "${{ matrix.os }}" == "windows-latest" ]]; then
             echo "separator=;" >> $GITHUB_OUTPUT
