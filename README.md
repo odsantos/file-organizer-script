@@ -25,7 +25,7 @@ This script scans a target folder (like your `Downloads` directory) and moves fi
 
 The easiest way to get started is to purchase and download the ready-to-use application from our official Gumroad page.
 
-1.  **[Purchase and Download from Gumroad](https://[YOUR_GUMROAD_LINK_HERE])**
+1.  [Purchase and Download from Gumroad](https://osvaldosantos.gumroad.com/l/file-organizer-pro)
 2.  Unzip the downloaded file.
 3.  **Windows**: Double-click the `organizer.exe` file.
 4.  **macOS**: Double-click the `organizer.app` application. You may need to right-click and select "Open" the first time if you see a security warning.
