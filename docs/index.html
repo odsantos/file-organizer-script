@@ -1,132 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Organizer Pro</title>
+    <title>File Organizer Pro - Smart File Organization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-hover: #0056b3;
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: #f6f8fa;
-            color: #24292e;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
+
         .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #fff;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            height: 400px;
+            background: linear-gradient(to right, #030207 20%, #051537 60%, #02255C 80%, #010A18 95%, #000205 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        header img {
+            width: auto;
+            height: 100%;
+            -webkit-mask-image: linear-gradient(to right, black 94%, transparent 100%);
+            mask-image: linear-gradient(to right, black 94%, transparent 100%);
+        }
+
+        .hero-intro {
+            background: var(--light-gray);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-intro p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: 500;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- Main Content --- */
+        main {
+            padding: 60px 0;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 20px auto 0;
+        }
+
+        /* --- Features Section --- */
+        #features .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature {
+            background: var(--light-gray);
             padding: 30px;
             border-radius: 8px;
-            border: 1px solid #e1e4e8;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
         }
-        h1, h2, h3 {
-            color: #24292e;
-            border-bottom: 1px solid #eaecef;
-            padding-bottom: .3em;
-            margin-top: 24px;
-            margin-bottom: 16px;
+
+        .feature:hover {
+            transform: translateY(-5px);
         }
-        h1 { font-size: 2em; }
-        h2 { font-size: 1.5em; }
-        h3 { font-size: 1.25em; }
-        code {
-            background: rgba(27,31,35,.05);
-            padding: .2em .4em;
-            margin: 0;
-            font-size: 85%;
-            border-radius: 3px;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+
+        .feature h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
-        pre {
-            background: #f6f8fa;
-            padding: 16px;
-            border-radius: 3px;
-            overflow: auto;
-            line-height: 1.45;
+
+        /* --- Before & After Section --- */
+        #before-after {
+            background-color: var(--light-gray);
         }
-        pre code {
-            background: none;
-            padding: 0;
-            margin: 0;
-            font-size: 100%;
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            text-align: center;
         }
-        a {
-            color: #0366d6;
+
+        .comparison-item h3 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+        }
+
+        .comparison-item img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 15px;
+        }
+
+        /* --- How It Works (Screenshot Showcase) --- */
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        /* Staggered animation for steps */
+        .step:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .step:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .step:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .step:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        /* Alternating layout */
+        .step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .step-text h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .step-img {
+            flex: 1;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .step-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Developer Section --- */
+        #developer {
+            text-align: center;
+            background: var(--light-gray);
+            padding: 60px 20px;
+            border-radius: 8px;
+        }
+
+        #developer p {
+            margin-bottom: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: var(--primary-color);
             text-decoration: none;
         }
-        a:hover {
+
+        footer a:hover {
             text-decoration: underline;
         }
-        .button {
-            display: inline-block;
-            background-color: #2ea44f;
-            color: white;
-            padding: 10px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
-            white-space: nowrap;
-            vertical-align: middle;
-            cursor: pointer;
-            border: 1px solid rgba(27,31,35,.15);
-            border-radius: 6px;
-            text-align: center;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: #2c974b;
-            text-decoration: none;
-        }
-        ul, ol {
-            padding-left: 2em;
-        }
-        li {
-            margin-bottom: 0.5em;
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            header {
+                height: 250px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .step {
+                flex-direction: column !important;
+                /* Stack on mobile */
+                gap: 30px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>File Organizer Pro</h1>
-        <p>A simple but powerful utility to automatically organize the files in a directory into clean, type-based subfolders.</p>
 
-        <h2>Features</h2>
-        <ul>
-            <li><strong>Easy-to-Use Interface</strong>: A simple and clean graphical user interface (GUI).</li>
-            <li><strong>Standalone Executables</strong>: No need to install Python or any other dependencies. Just download and run.</li>
-            <li><strong>Smart Conflict Resolution</strong>: Automatically renames files if a file with the same name already exists in the destination.</li>
-            <li><strong>Convenient</strong>: Defaults to your "Downloads" folder on first launch.</li>
-            <li><strong>Accessible</strong>: Features adjustable font sizes (Small, Medium, Large).</li>
-        </ul>
+    <header>
+        <img src="images/banner.jpeg" alt="File Organizer Pro Banner">
+    </header>
 
-        <h2>Download and Installation</h2>
-        <p>The easiest way to get started is to purchase and download the latest executable for your operating system from our official Gumroad page.</p>
-        <p><a href="https://osvaldosantos.gumroad.com/l/file-organizer-pro" class="button">Purchase and Download from Gumroad</a></p>
-        
-        <h3>Instructions:</h3>
-        <ul>
-            <li>Download the zip file for your operating system from the releases page.</li>
-            <li>Unzip the downloaded file.</li>
-            <li><strong>Windows</strong>: Double-click the <code>organizer.exe</code> file.</li>
-            <li><strong>macOS</strong>: Double-click the <code>organizer.app</code> application. You may need to right-click and select "Open" the first time if you see a security warning.</li>
-            <li><strong>Linux</strong>: Make the <code>organizer</code> file executable (<code>chmod +x organizer</code>) and then run it from your terminal (<code>./organizer</code>).</li>
-        </ul>
+    <section class="hero-intro">
+        <div class="container">
+            <p>The simple, powerful utility to automatically organize your messy folders into clean, type-based
+                subdirectories.</p>
+            <a href="https://osvaldosantos.gumroad.com/l/file-organizer-pro" class="cta-button">Purchase on Gumroad</a>
+        </div>
+    </section>
 
-        <h2>How to Use the App</h2>
-        <ol>
-            <li>Click the <strong>"Browse..."</strong> button to select the directory you want to organize.</li>
-            <li>Click the <strong>"Organize Files"</strong> button to start the process.</li>
-            <li>A confirmation message will show you a log of what was moved.</li>
-        </ol>
+    <main class="container">
 
-        <h2>Disclaimer</h2>
-        <p>This script helps you organize your files by moving them. As with any tool that modifies your file system, it's always a good idea to be cautious. We recommend you double-check the selected directory before confirming the action.</p>
+        <section id="features">
+            <h2>Why You'll Love It</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Easy-to-Use Interface</h3>
+                    <p>A simple and clean graphical user interface (GUI) that's intuitive for everyone.</p>
+                </div>
+                <div class="feature">
+                    <h3>Standalone Executables</h3>
+                    <p>No need to install Python or any other dependencies. Just download and run on Windows, macOS, or
+                        Linux.</p>
+                </div>
+                <div class="feature">
+                    <h3>Smart Conflict Resolution</h3>
+                    <p>Automatically renames files if a file with the same name already exists in the destination
+                        folder.</p>
+                </div>
+            </div>
+        </section>
 
-        <h2>License</h2>
-        <p>This software is a commercial product. Use of this software is subject to the terms and conditions outlined in the <a href="../LICENSE.md">End-User License Agreement (EULA)</a>.</p>
-        <p><small>Developers interested in the source code can find the repository and version history on <a href="https://github.com/odsantos/file-organizer-script">GitHub</a>.</small></p>
-    </div>
+        <section id="before-after">
+            <h2>See the Transformation</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>Before</h3>
+                    <img src="images/folder-before.png" alt="A messy folder with mixed file types">
+                    <p>A chaotic mix of documents, images, and archives.</p>
+                </div>
+                <div class="comparison-item">
+                    <h3>After</h3>
+                    <img src="images/folder-after.png" alt="An organized folder with subdirectories for each file type">
+                    <p>Perfectly organized into type-based subfolders.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <h2>How It Works in 3 Simple Steps</h2>
+
+            <!-- STEP 1 -->
+            <div class="step">
+                <div class="step-text">
+                    <h3>1. Select a Directory</h3>
+                    <p>Click the <strong>"Browse..."</strong> button to choose any folder on your computer that you want
+                        to tidy up. The app defaults to your "Downloads" folder for convenience.</p>
+                </div>
+                <div class="step-img">
+                    <img src="images/main-window.png" alt="Main application window of File Organizer Pro">
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step">
+                <div class="step-text">
+                    <h3>2. Confirm the Action</h3>
+                    <p>Click the <strong>"Organize Files"</strong> button. A confirmation prompt appears to ensure you
+                        don't organize a folder by accident. This is your safety check!</p>
+                </div>
+                <div class="step-img">
+                    <img src="images/confirmation-prompt.png" alt="Confirmation prompt before organizing files">
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step">
+                <div class="step-text">
+                    <h3>3. See the Magic!</h3>
+                    <p>The script instantly moves your files into neatly organized subfolders based on their type (e.g.,
+                        'PDF Files', 'JPG Files'). A log shows you exactly what was moved.</p>
+                </div>
+                <div class="step-img">
+                    <img src="images/completion-log.png" alt="Completion log showing moved files">
+                </div>
+            </div>
+
+            <!-- BONUS STEP -->
+            <div class="step">
+                <div class="step-text">
+                    <h3>Built-in Help</h3>
+                    <p>Confused? Just click the <strong>"Instructions"</strong> button to get a clear, step-by-step
+                        guide right within the app.</p>
+                </div>
+                <div class="step-img">
+                    <img src="images/instructions-popup.png" alt="Instructions pop-up">
+                </div>
+            </div>
+
+        </section>
+
+        <section id="developer">
+            <div class="container">
+                <h2>For Developers</h2>
+                <p>Interested in the source code? You can find the full repository, version history, and license on
+                    GitHub.</p>
+                <a href="https://github.com/odsantos/file-organizer-script" class="cta-button">View on GitHub</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                Use of this software is subject to the <a href="../LICENSE.md">End-User License Agreement (EULA)</a>.
+            </p>
+            <p>
+                &copy; 2025 Osvaldo Santos. Visit my <a href="https://odsantos.github.io/">portfolio</a>.
+            </p>
+        </div>
+    </footer>
+
 </body>
+
 </html>
