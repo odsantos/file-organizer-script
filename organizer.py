@@ -75,7 +75,7 @@ def get_icon_path():
     else:
         # The application is running as a normal Python script.
         base_path = Path(__file__).parent
-    return base_path / 'assets' / 'file-organizer-pro-64-64.gif'
+    return base_path / 'assets' / 'images' / 'file-organizer-64-64.gif'
 
 
 def main():
@@ -84,7 +84,7 @@ def main():
     """
     # --- GUI Setup ---
     root = tk.Tk()
-    root.title("File Organizer Pro")
+    root.title("File Organizer")
     root.geometry("500x300") # Increased height for the new widget
     root.resizable(False, False)
 

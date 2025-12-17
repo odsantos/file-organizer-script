@@ -1,4 +1,4 @@
-# File Organizer Pro
+# File Organizer
 
 A simple but powerful utility to automatically organize the files in a directory into clean, type-based subfolders.
 
@@ -25,7 +25,7 @@ This script scans a target folder (like your `Downloads` directory) and moves fi
 
 The easiest way to get started is to purchase and download the ready-to-use application from our official Gumroad page.
 
-1.  [Purchase and Download from Gumroad](https://osvaldosantos.gumroad.com/l/file-organizer-pro)
+1.  [Purchase and Download from Gumroad](https://osvaldosantos.gumroad.com/l/file-organizer)
 2.  Unzip the downloaded file.
 3.  **Windows**: Double-click the `organizer.exe` file.
 4.  **macOS**: Double-click the `organizer.app` application. You may need to right-click and select "Open" the first time if you see a security warning.
@@ -62,3 +62,14 @@ This script helps you organize your files by moving them. As with any tool that 
 ## License
 
 This software is a commercial product. Use of this software is subject to the terms and conditions outlined in the **[End-User License Agreement (EULA)](LICENSE.md)**.
+
+## About This Repository
+
+This repository serves as the central hub for the File Organizer project. It contains:
+-   The Python source code for the File Organizer desktop application (`organizer.py`).
+-   The PHP and HTML files for the official File Organizer website (e.g., `index.php`, `contact.php`, `privacy.php`, `terms.php`).
+
+## Support and Contact
+
+If you have any questions, encounter issues, or require support, please visit our official website and use the contact form:
+**[File Organizer Contact Page](https://fileorganizer.odsantos.com/contact.php)**

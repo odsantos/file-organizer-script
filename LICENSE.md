@@ -1,4 +1,4 @@
-# End-User License Agreement (EULA) for File Organizer Pro
+# End-User License Agreement (EULA) for File Organizer
 
 This End-User License Agreement ("EULA") is a legal agreement between you (either an individual or a single entity) and **Osvaldo Santos** ("Licensor") for the use of the software product identified above, which includes computer software and may include associated media, printed materials, and "online" or electronic documentation ("Software").
 
@@ -34,7 +34,7 @@ This EULA shall remain in effect until terminated by you or the Licensor. The Li
 
 ## 7. Governing Law
 
-The laws of **Luanda, Angola**, excluding its conflicts of law rules, shall govern this EULA and your use of the Software. Your use of the Software may also be subject to other local, state, national, or international laws.
+The laws of Angola, excluding its conflicts of law rules, shall govern this EULA and your use of the Software. Your use of the Software may also be subject to other local, state, national, or international laws. You agree to submit to the personal and exclusive jurisdiction of the courts located within Luanda, Angola to resolve any dispute or claim arising from this EULA.
 
 ## 8. Entire Agreement
 
@@ -42,7 +42,7 @@ This EULA constitutes the entire agreement between you and the Licensor regardin
 
 ## 9. Contact Information
 
-If you have any questions about this EULA, please contact us through the form at **https://odsantos.github.io/#contact**.
+If you have any questions about this EULA, please contact us through the form at **https://fileorganizer.odsantos.com/**.
 
 ---
 *This EULA was generated based on a standard template. It is strongly recommended that you consult with a legal professional to ensure this agreement is appropriate and legally binding for your specific situation.*

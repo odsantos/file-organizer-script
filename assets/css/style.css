@@ -1,0 +1,403 @@
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --text-color: #333;
+    --bg-color: #ffffff;
+    --light-gray: #f8f9fa;
+    --border-color: #dee2e6;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header --- */
+header {
+    background: linear-gradient(to right, #030207 20%, #051537 60%, #02255C 80%, #010A18 95%, #000205 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+header img {
+    max-height: 350px;
+    width: auto;
+    -webkit-mask-image: linear-gradient(to right, black 94%, transparent 100%);
+    mask-image: linear-gradient(to right, black 94%, transparent 100%);
+}
+
+header nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+
+.hero-intro {
+    background: var(--light-gray);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero-intro p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: var(--shadow);
+}
+
+.cta-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* --- Main Content --- */
+main {
+    padding: 60px 0;
+}
+
+section {
+    padding: 40px 0;
+}
+
+h1, h2 {
+    text-align: center;
+    font-size: 2.0em;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 20px auto 0;
+}
+
+/* --- Features Section --- */
+#features .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    text-align: center;
+}
+
+.feature {
+    background: var(--light-gray);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+.feature h3 {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* --- Before & After Section --- */
+#before-after {
+    background-color: var(--light-gray);
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    text-align: center;
+}
+
+.comparison-item h3 {
+    font-size: 1.2em;
+    color: var(--primary-color);
+}
+
+.comparison-item img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 15px;
+}
+
+/* --- How It Works (Screenshot Showcase) --- */
+.step {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s forwards;
+}
+
+/* Staggered animation for steps */
+.step:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.step:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.step:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.step:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+/* Alternating layout */
+.step:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.step-text {
+    flex: 1;
+}
+
+.step-text h3 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+
+.step-img {
+    flex: 1;
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.step-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Developer Section --- */
+#developer {
+    text-align: center;
+    background: var(--light-gray);
+    padding: 60px 20px;
+    border-radius: 8px;
+}
+
+#developer p {
+    margin-bottom: 20px;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9em;
+    width: 100%;
+    background: var(--light-gray);
+}
+
+footer nav a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    header {
+        height: 250px;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    .step {
+        flex-direction: column !important;
+        /* Stack on mobile */
+        gap: 30px;
+    }
+
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Contact Form Styles */
+form {
+    margin-top: 20px;
+    margin-bottom: 40px; /* Added for vertical space above footer */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't increase total width */
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+form textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 120px;
+}
+
+form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Basic Honeypot for spam prevention */
+form div[style*="display:none"] {
+    display: none;
+}
+
+
+/* FAQ Accordion Styles */
+.faq-item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.faq-question {
+    cursor: pointer;
+    padding: 10px; /* Increased padding */
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9; /* Subtle default background */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.faq-question:hover {
+    background-color: #e0e0e0; /* Darker background on hover */
+    color: #000; /* Slightly darker text on hover */
+}
+
+.faq-question.active {
+    background-color: #f0f0f0; /* Still light gray background for active question */
+    border-bottom-left-radius: 0; /* Remove bottom-left radius when active */
+    border-bottom-right-radius: 0; /* Remove bottom-right radius when active */
+    color: #007bff; /* Change text color when active to draw more attention */
+}
+
+.faq-question::after {
+    content: '+';
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+    content: '-';
+    transform: rotate(0deg); /* Reset rotation for '-' */
+}
+
+.faq-answer {
+    cursor: default; /* Explicitly set default cursor for answer */
+    padding: 10px; /* Adjust padding */
+    border: 1px solid #f0f0f0; /* Add a border */
+    border-top: none; /* No top border */
+    border-bottom-left-radius: 5px; /* Rounded corners for bottom */
+    border-bottom-right-radius: 5px; /* Rounded corners for bottom */
+    margin-top: -1px; /* Overlap border with question's bottom border */
+    background-color: #fdfdfd; /* Slightly different background */
+    color: #555;
+    display: none; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: 0; /* For smooth transition */
+}
+
+.faq-answer.open {
+    display: block; /* Shown when active */
+    max-height: 500px; /* Adjust based on expected answer length */
+}

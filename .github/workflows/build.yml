@@ -2,8 +2,10 @@ name: Create Release
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
+    paths:
+      - 'organizer.py'
   workflow_dispatch:
 
 jobs:
@@ -41,7 +43,7 @@ jobs:
       - name: Build with PyInstaller
         run: >
           pyinstaller
-          --name "File Organizer Pro"
+          --name "File Organizer"
           --onefile
           --windowed
           --add-data "assets${{ steps.set_separator.outputs.separator }}assets"
@@ -50,24 +52,24 @@ jobs:
       - name: Package Artifact (Windows)
         if: matrix.os == 'windows-latest'
         run: |
-          Compress-Archive -Path dist/"File Organizer Pro.exe" -DestinationPath "File-Organizer-Pro-Windows.zip"
+          Compress-Archive -Path dist/"File Organizer.exe" -DestinationPath "File-Organizer-Windows.zip"
         shell: pwsh
 
       - name: Package Artifact (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          zip "File-Organizer-Pro-Linux.zip" dist/"File Organizer Pro"
+          zip "File-Organizer-Linux.zip" dist/"File Organizer"
 
       - name: Package Artifact (macOS)
         if: matrix.os == 'macos-latest'
         run: |
-          zip -r "File-Organizer-Pro-macOS.zip" "dist/File Organizer Pro.app"
+          zip -r "File-Organizer-macOS.zip" "dist/File Organizer.app"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: File-Organizer-Pro-${{ matrix.os }}
-          path: File-Organizer-Pro-*.zip
+          name: File-Organizer-${{ matrix.os }}
+          path: File-Organizer-*.zip
 
   release:
     name: Create GitHub Release
