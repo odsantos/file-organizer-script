@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /process_contact.php
+Disallow: /ao/process_contact.php
+Sitemap: https://fileorganizer.odsantos.com/sitemap.xml

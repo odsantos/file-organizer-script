@@ -1,0 +1,17 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns=
+      "http://www.w3.org/2000/svg">
+  <!-- Main folder body - primary blue -->
+  <path d="M2,12 C2,10.8954 2.89543,10 4,10 L24,10 C25.1046,10 26,10.8954 26,12 L58,12
+      C59.1046,12 60,12.8954 60,14 L60,52 C60,53.1046 59.1046,54 58,54 L4,54 C2.89543,54 2,53.10
+      2,52 L2,12 Z" fill="#007bff"/>
+  <!-- Folder top bar - darker blue for depth -->
+  <path d="M4,10 C2.89543,10 2,10.8954 2,12 L2,18 C2,19.1046 2.89543,20 4,20 L58,20
+      C59.1046,20 60,19.1046 60,18 L60,14 C60,12.8954 59.1046,12 58,12 L26,12 C26,10.8954
+      25.1046,10 24,10 L4,10 Z" fill="#0056b3"/>
+  <!-- Text 'f' (white) -->
+  <text x="18" y="42" font-family="sans-serif" font-size="22" fill="#ffffff" font-weight=
+      "bold" font-style="italic">f</text>
+  <!-- Text 'o' (white, slightly raised) -->
+  <text x="36" y="35" font-family="sans-serif" font-size="22" fill="#ffffff" font-weight=
+      "bold" font-style="italic">o</text>
+</svg>

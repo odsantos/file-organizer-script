@@ -18,6 +18,10 @@ body {
     color: var(--text-color);
 }
 
+.center-text {
+    text-align: center;
+}
+
 .container {
     max-width: 960px;
     margin: 0 auto;
@@ -44,14 +48,26 @@ header img {
 header nav {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header nav a {
     color: white;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 500;
+}
+
+header nav > div:last-child a:first-child::after {
+    content: '|';
+    margin: 0 10px;
 }
 
 
@@ -62,17 +78,17 @@ header nav a {
 }
 
 .hero-intro p {
-    font-size: 1.2em;
+    font-size: 1.15em;
     max-width: 600px;
     margin: 0 auto 30px;
 }
 
-.cta-button {
+.cta-button, #developer a {
     display: inline-block;
     background-color: var(--primary-color);
     color: white;
     padding: 15px 30px;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 500;
     border-radius: 50px;
     text-decoration: none;
@@ -80,7 +96,7 @@ header nav a {
     box-shadow: var(--shadow);
 }
 
-.cta-button:hover {
+.cta-button:hover, #developer a:hover {
     background-color: var(--primary-hover);
     transform: translateY(-2px);
 }
@@ -94,9 +110,16 @@ section {
     padding: 40px 0;
 }
 
-h1, h2 {
+h1 {
     text-align: center;
-    font-size: 2.0em;
+    font-size: 2.2em;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.6em;
     margin-bottom: 60px;
     position: relative;
 }
@@ -256,21 +279,44 @@ footer nav a:hover {
 /* --- Responsive --- */
 @media (max-width: 768px) {
     header {
-        height: 250px;
+        flex-direction: column; /* Stack Nav and Image vertically */
+        height: auto;
+        padding: 20px 0;        /* Space at top and bottom */
+        overflow: visible;
     }
 
+    header nav {
+        position: static;       /* Remove from "floating" layer */
+        width: 100%;
+        text-align: center;     /* Center the Home link */
+        margin-bottom: 15px;    /* Push the image down */
+    }
+
+    header nav a {
+        display: inline-block;
+        padding: 5px 10px;      /* Buffer to prevent vertical cutting */
+        line-height: 1.2;
+    }
+
+    header img {
+        max-height: 180px;      /* Smaller height for mobile screens */
+        width: 90%;             /* Don't let it touch the edges */
+        object-fit: contain;
+        margin: 0 auto;
+    }
+    
     h2 {
         font-size: 1.6em;
     }
 
     .step {
-        flex-direction: column !important;
-        /* Stack on mobile */
+        flex-direction: column !important; /* Stack screenshots on top of text */
         gap: 30px;
+        text-align: center;
     }
 
     .comparison-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack "Before" and "After" images */
     }
 }
 
@@ -400,4 +446,18 @@ form div[style*="display:none"] {
 .faq-answer.open {
     display: block; /* Shown when active */
     max-height: 500px; /* Adjust based on expected answer length */
+}
+
+.regular-link {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.regular-link:visited {
+    color: #8a2be2; /* A shade of purple for visited links */
+    text-decoration: none;
+}
+
+.regular-link:hover {
+    text-decoration: underline;
 }
