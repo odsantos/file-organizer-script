@@ -2,13 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const faqQuestions = document.querySelectorAll('.faq-question');
 
     faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            const clickedQuestion = this;
-            const clickedAnswer = clickedQuestion.nextElementSibling;
+        question.addEventListener('click', () => {
+            const clickedAnswer = question.nextElementSibling;
 
             // Close all other open FAQs
             faqQuestions.forEach(otherQuestion => {
-                if (otherQuestion !== clickedQuestion && otherQuestion.classList.contains('active')) {
+                if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
                     otherQuestion.classList.remove('active');
                     const otherAnswer = otherQuestion.nextElementSibling;
                     otherAnswer.classList.remove('open');
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Toggle the clicked FAQ
-            clickedQuestion.classList.toggle('active');
+            question.classList.toggle('active');
             if (clickedAnswer.classList.contains('open')) {
                 clickedAnswer.classList.remove('open');
                 clickedAnswer.style.maxHeight = 0;
