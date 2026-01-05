@@ -47,9 +47,9 @@ jobs:
           --onefile
           --windowed
           --add-data "assets${{ steps.set_separator.outputs.separator }}assets"
-          ${{ matrix.os == 'windows-latest' && format('--icon assets{}app_icon.ico', steps.set_separator.outputs.separator) || '' }}
-          ${{ matrix.os == 'macos-latest' && format('--icon assets{}app_icon.icns', steps.set_separator.outputs.separator) || '' }}
-          ${{ matrix.os == 'ubuntu-latest' && format('--icon assets{}icon-1024x1024.png', steps.set_separator.outputs.separator) || '' }}
+          ${{ matrix.os == 'windows-latest' && format('--icon "assets{0}app_icon.ico"', steps.set_separator.outputs.separator) || '' }}
+          ${{ matrix.os == 'macos-latest' && format('--icon "assets{0}app_icon.icns"', steps.set_separator.outputs.separator) || '' }}
+          ${{ matrix.os == 'ubuntu-latest' && format('--icon "assets{0}icon-1024x1024.png"', steps.set_separator.outputs.separator) || '' }}
           organizer.py
 
       - name: Package Artifact (Windows)
