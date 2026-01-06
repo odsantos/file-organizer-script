@@ -1,12 +1,18 @@
 name: Create Release
 
+# ---------------------------------------------------------------------------
+# HOW TO CREATE A NEW RELEASE:
+# 1. Create a new version tag locally (e.g., v1.2.0)
+#    git tag v1.2.0
+# 2. Push the tag to GitHub
+#    git push origin v1.2.0
+# This workflow will then automatically build the executables and create
+# a new draft release with the same version number.
+# ---------------------------------------------------------------------------
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'organizer.py'
-      - '.github/workflows/build.yml'
+    tags:
+      - 'v*.*.*'
   workflow_dispatch:
 
 jobs:
@@ -94,4 +100,3 @@ jobs:
           files: artifacts/*/*.zip
           draft: true
           generate_release_notes: true
-          tag_name: latest-build
