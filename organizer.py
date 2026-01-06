@@ -126,6 +126,29 @@ class FileOrganizerApp:
         control_frame = ttk.Frame(self.root, padding="10")
         control_frame.grid(row=1, column=0, columnspan=3, sticky="ew")
 
+        # Language selection
+        self.lang_label = ttk.Label(control_frame, text=translations[self.lang]['language_label'])
+        self.lang_label.pack(side="left", padx=(0, 5))
+
+        self.lang_selection = tk.StringVar()
+        self.lang_combobox = ttk.Combobox(control_frame, textvariable=self.lang_selection,
+                                          values=list(translations.keys()), state="readonly", width=5)
+        self.lang_combobox.pack(side="left", padx=(0, 10))
+        self.lang_combobox.set(self.lang) # Set initial value
+        self.lang_combobox.bind("<<ComboboxSelected>>", self.change_language)
+
+        # Font Size selection
+        self.font_size_label = ttk.Label(control_frame, text=translations[self.lang]['font_size_label'])
+        self.font_size_label.pack(side="left", padx=(0, 5))
+
+        self.current_font_size_key = tk.StringVar(value="medium") # Default font size
+        self.font_size_combobox = ttk.Combobox(control_frame, textvariable=self.current_font_size_key,
+                                               values=["small", "medium", "large"], state="readonly", width=7)
+        self.font_size_combobox.pack(side="left", padx=(0, 10))
+        self.font_size_combobox.set(self.current_font_size_key.get()) # Set initial value
+        self.font_size_combobox.bind("<<ComboboxSelected>>", self.change_font_size)
+
+        # Instructions and Organize buttons
         self.instructions_button = ttk.Button(control_frame, text=translations[self.lang]['instructions_button'], command=self.show_instructions)
         self.instructions_button.pack(side="left")
         
@@ -158,6 +181,33 @@ class FileOrganizerApp:
         ):
             organize_files(target_dir, self.lang)
 
+    def change_language(self, event=None):
+        """Change the application's language based on combobox selection."""
+        selected_lang = self.lang_selection.get()
+        if selected_lang in translations:
+            self.lang = selected_lang
+            self.update_ui_language()
+
+    def change_font_size(self, event=None):
+        """Change the application's font size based on combobox selection."""
+        self.current_font_size_key.set(self.font_size_combobox.get())
+        self.apply_fonts_to_widgets()
+
+    def apply_fonts_to_widgets(self):
+        """Apply the currently selected font size to all relevant widgets."""
+        current_font = self.fonts[self.current_font_size_key.get()]
+
+        self.dir_label.config(font=current_font)
+        self.dir_entry.config(font=current_font)
+        self.browse_button.config(font=current_font)
+        self.instructions_button.config(font=current_font)
+        self.organize_button.config(font=current_font)
+        self.lang_label.config(font=current_font)
+        self.lang_combobox.config(font=current_font)
+        self.font_size_label.config(font=current_font)
+        self.font_size_combobox.config(font=current_font)
+        # Note: messagebox fonts are system-dependent and usually cannot be changed directly via Tkinter
+
     def update_ui_language(self):
         """Update all UI text elements to the current language."""
         self.root.title(translations[self.lang]['title'])
@@ -165,6 +215,12 @@ class FileOrganizerApp:
         self.browse_button.config(text=translations[self.lang]['browse_button'])
         self.instructions_button.config(text=translations[self.lang]['instructions_button'])
         self.organize_button.config(text=translations[self.lang]['organize_button'])
+        self.lang_label.config(text=translations[self.lang]['language_label'])
+        self.lang_combobox.set(self.lang)
+        self.font_size_label.config(text=translations[self.lang]['font_size_label'])
+        # Font size combobox values are fixed keys, but their displayed text might be translated in the future if we use a mapping
+        # For now, we update the label and re-apply fonts
+        self.apply_fonts_to_widgets()
 
 
 def main():
