@@ -62,18 +62,21 @@ jobs:
       - name: Package Artifact (Windows)
         if: matrix.os == 'windows-latest'
         run: |
-          Compress-Archive -Path dist/"File Organizer.exe" -DestinationPath "File-Organizer-Windows.zip"
+          cd dist
+          Compress-Archive -Path "File Organizer.exe" -DestinationPath "../File-Organizer-Windows.zip"
         shell: pwsh
 
       - name: Package Artifact (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          zip "File-Organizer-Linux.zip" dist/"File Organizer"
+          cd dist
+          zip "../File-Organizer-Linux.zip" "File Organizer"
 
       - name: Package Artifact (macOS)
         if: matrix.os == 'macos-latest'
         run: |
-          zip -r "File-Organizer-macOS.zip" "dist/File Organizer.app"
+          cd dist
+          zip -r "../File-Organizer-macOS.zip" "File Organizer.app"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
