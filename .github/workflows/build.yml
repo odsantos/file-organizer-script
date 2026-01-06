@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'organizer.py'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 jobs:
@@ -47,9 +48,9 @@ jobs:
           ${{ matrix.os == 'macos-latest' && '--onedir' || '--onefile' }}
           --windowed
           --add-data "assets${{ steps.set_separator.outputs.separator }}assets"
-          ${{ matrix.os == 'windows-latest' && '--icon "assets/app_icon.ico"' || '' }}
-          ${{ matrix.os == 'macos-latest' && '--icon "assets/app_icon.icns"' || '' }}
-          ${{ matrix.os == 'ubuntu-latest' && '--icon "assets/icon-1024x1024.png"' || '' }}
+          ${{ matrix.os == 'windows-latest' && '--icon "assets/images/app_icon.ico"' || '' }}
+          ${{ matrix.os == 'macos-latest' && '--icon "assets/images/app_icon.icns"' || '' }}
+          ${{ matrix.os == 'ubuntu-latest' && '--icon "assets/images/icon-1024x1024.png"' || '' }}
           organizer.py
 
       - name: Package Artifact (Windows)
