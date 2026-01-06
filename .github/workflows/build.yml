@@ -44,12 +44,12 @@ jobs:
         run: >
           pyinstaller
           --name "File Organizer"
-          --onefile
+          ${{ matrix.os == 'macos-latest' && '--onedir' || '--onefile' }}
           --windowed
           --add-data "assets${{ steps.set_separator.outputs.separator }}assets"
-          ${{ matrix.os == 'windows-latest' && '--icon assets/app_icon.ico' || '' }}
-          ${{ matrix.os == 'macos-latest' && '--icon assets/app_icon.icns' || '' }}
-          ${{ matrix.os == 'ubuntu-latest' && '--icon assets/icon-1024x1024.png' || '' }}
+          ${{ matrix.os == 'windows-latest' && '--icon "assets/app_icon.ico"' || '' }}
+          ${{ matrix.os == 'macos-latest' && '--icon "assets/app_icon.icns"' || '' }}
+          ${{ matrix.os == 'ubuntu-latest' && '--icon "assets/icon-1024x1024.png"' || '' }}
           organizer.py
 
       - name: Package Artifact (Windows)
