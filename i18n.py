@@ -21,8 +21,8 @@ translations = {
         "instructions_title": "Instructions",
         "instructions_text": """1. Click 'Browse...' to select a folder.
 
-   **IMPORTANT: To select a folder, you must first double-click to
-   navigate into it, and then click the 'Open' or 'Select Folder' button.**
+   **IMPORTANT: To select a folder, you must first double-click to navigate
+   into it, and then click the 'Open' or 'Select Folder' button.**
 
 2. The selected folder path will appear in the text box.
 
@@ -40,6 +40,9 @@ translations = {
         "completion_no_files_moved": "No files were moved.",
         "moved_file_log": "Moved: %s -> %s/%s",
         "error_moving_file_log": "Error moving %s: %s",
+        "yes_button": "Yes",
+        "no_button": "No",
+        "ok_button": "OK",
     },
     "pt": {
         "title": "Organizador de Ficheiros",
@@ -55,8 +58,7 @@ translations = {
         "instructions_title": "Instruções",
         "instructions_text": """1. Clique em 'Procurar...' para selecionar uma pasta.
 
-   **IMPORTANT: To select a folder, you must first double-click to
-   navigate into it, and then click the 'Open' or 'Select Folder' button.**
+   **IMPORTANTE: Para selecionar uma pasta, deve primeiro fazer duplo clique para entrar nela e, e seguida, clicar no botão 'Abrir' ou 'Selecionar Pasta'.**
 
 2. O caminho da pasta selecionada aparecerá na caixa de texto.
 
@@ -74,5 +76,8 @@ translations = {
         "completion_no_files_moved": "Nenhum ficheiro foi movido.",
         "moved_file_log": "Movido: %s -> %s/%s",
         "error_moving_file_log": "Erro ao mover %s: %s",
+        "yes_button": "Sim",
+        "no_button": "Não",
+        "ok_button": "OK",
     }
 }

@@ -30,13 +30,19 @@ def _move_file_with_conflict_resolution(item, dest_dir, lang):
     except Exception as e:
         return translations[lang]["error_moving_file_log"] % (item.name, e)
 
-def organize_files(target_directory, lang='en'):
+def organize_files(root, target_directory, lang='en', font=None):
     """
     Organizes files in the specified directory.
     """
     target_path = Path(target_directory)
     if not target_path.is_dir():
-        messagebox.showerror(translations[lang]["error_title"], translations[lang]["error_text"] % target_directory)
+        CustomMessageDialog(
+            root, # Use root as parent
+            title=translations[lang]["error_title"],
+            message=translations[lang]["error_text"] % target_directory,
+            lang=lang,
+            font=font
+        )
         return
 
     moved_files_log = []
@@ -64,10 +70,22 @@ def organize_files(target_directory, lang='en'):
         moved_files_log.append(log_message)
     
     if moved_files_log:
-        log_message = "\n".join(moved_files_log)
-        messagebox.showinfo(translations[lang]["completion_title"], translations[lang]["completion_log_message"] % log_message)
+        log_message = "\n".join(moved_files_log) # This line was missing
+        CustomMessageDialog(
+            root, # Use root as parent
+            title=translations[lang]["completion_title"],
+            message=translations[lang]["completion_log_message"] % log_message,
+            lang=lang,
+            font=font
+        )
     else:
-        messagebox.showinfo(translations[lang]["completion_title"], translations[lang]["completion_no_files_moved"])
+        CustomMessageDialog(
+            root, # Use root as parent
+            title=translations[lang]["completion_title"],
+            message=translations[lang]["completion_no_files_moved"],
+            lang=lang,
+            font=font
+        )
 
 def get_icon_path():
     """
@@ -80,6 +98,152 @@ def get_icon_path():
         # The application is running in a normal Python environment
         base_path = Path(__file__).parent
     return base_path / 'assets' / 'images' / 'icon-1024x1024.png'
+
+class CustomDialog(tk.Toplevel):
+    """
+    A base class for creating custom, modal dialog boxes.
+    """
+    def __init__(self, parent, title, message, lang='en', font=None):
+        super().__init__(parent)
+        self.transient(parent)
+        self.parent = parent
+        self.lang = lang
+        self.font = font
+        self.result = None
+
+        self.title(title)
+        
+        # --- Body for the message ---
+        body = ttk.Frame(self)
+        self.initial_focus = self.body(body, message)
+        body.pack(padx=20, pady=20)
+
+        # --- Frame for the buttons ---
+        self.buttonbox()
+
+        # --- Dialog behavior ---
+        self.grab_set() # Make modal
+
+        if not self.initial_focus:
+            self.initial_focus = self
+
+        self.protocol("WM_DELETE_WINDOW", self.cancel)
+
+        self.center_on_parent()
+
+        self.initial_focus.focus_set()
+        self.wait_window(self)
+
+    def center_on_parent(self):
+        """Center the dialog over the parent window."""
+        self.update_idletasks()
+        parent_x = self.parent.winfo_x()
+        parent_y = self.parent.winfo_y()
+        parent_width = self.parent.winfo_width()
+        parent_height = self.parent.winfo_height()
+        dialog_width = self.winfo_width()
+        dialog_height = self.winfo_height()
+        
+        x = parent_x + (parent_width - dialog_width) // 2
+        y = parent_y + (parent_height - dialog_height) // 2
+        self.geometry(f"+{x}+{y}")
+
+    def body(self, master, message):
+        """Create the dialog body. Return widget that should have initial focus."""
+        # Use a Label with wraplength to control text wrapping
+        w = ttk.Label(master, text=message, wraplength=600, justify=tk.LEFT, font=self.font)
+        w.pack(padx=5, pady=5)
+        return w
+
+    def buttonbox(self):
+        """
+        Create the button box.
+        This method is intended to be overridden in subclasses.
+        """
+        box = ttk.Frame(self)
+        # Example button:
+        # w = ttk.Button(box, text="OK", width=10, command=self.ok, default=tk.ACTIVE)
+        # w.pack(side=tk.LEFT, padx=5, pady=5)
+        box.pack()
+
+    def ok(self, event=None):
+        """Standard OK handler."""
+        if not self.validate():
+            self.initial_focus.focus_set() # put focus back
+            return
+        self.withdraw()
+        self.update_idletasks()
+        self.apply()
+        self.cancel()
+
+    def cancel(self, event=None):
+        """Standard Cancel handler."""
+        self.parent.focus_set()
+        self.destroy()
+
+    def validate(self):
+        """
+        Validation hook.
+        This method is intended to be overridden in subclasses.
+        """
+        return 1 # 1 means validation passes
+
+    def apply(self):
+        """
+        Apply hook.
+        This method is intended to be overridden in subclasses.
+        """
+        pass # override
+
+
+class CustomConfirmDialog(CustomDialog):
+    """
+    A custom confirmation dialog with 'Yes' and 'No' buttons.
+    """
+    def buttonbox(self):
+        box = ttk.Frame(self)
+
+        yes_text = translations[self.lang].get('yes_button', 'Yes')
+        no_text = translations[self.lang].get('no_button', 'No')
+
+        w = ttk.Button(box, text=yes_text, width=10, command=self.yes_pressed, default=tk.ACTIVE)
+        w.pack(side=tk.LEFT, padx=10, pady=(10, 0)) # Padding on top
+        w = ttk.Button(box, text=no_text, width=10, command=self.no_pressed)
+        w.pack(side=tk.LEFT, padx=10, pady=(10, 0)) # Padding on top
+
+        self.bind("<Return>", self.yes_pressed)
+        box.pack(pady=(0, 15)) # Increased bottom padding of the whole box
+
+    def yes_pressed(self, event=None):
+        self.result = True
+        self.ok()
+
+    def no_pressed(self, event=None):
+        self.result = False
+        self.cancel()
+
+
+class CustomMessageDialog(CustomDialog):
+    """
+    A custom message dialog with a single 'OK' button.
+    """
+    def buttonbox(self):
+        box = ttk.Frame(self)
+
+        ok_text = translations[self.lang].get('ok_button', 'OK')
+
+        w = ttk.Button(box, text=ok_text, width=10, command=self.ok_pressed, default=tk.ACTIVE)
+        w.pack(side=tk.LEFT, padx=10, pady=(10, 0)) # Padding on top
+
+        self.bind("<Return>", self.ok_pressed)
+        self.bind("<Escape>", self.ok_pressed) # Escape key also closes the dialog
+
+        box.pack(pady=(0, 15)) # Increased bottom padding of the whole box
+
+    def ok_pressed(self, event=None):
+        self.result = True # Or just simply close the dialog
+        self.ok()
+
 
 class FileOrganizerApp:
     """
@@ -111,8 +275,10 @@ class FileOrganizerApp:
 
 
         # Frame for directory selection
-        dir_frame = ttk.Frame(self.root, padding="10")
-        dir_frame.grid(row=0, column=0, columnspan=3, sticky="ew")
+        dir_frame = ttk.Frame(self.root)
+        dir_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=(10,5))
+
+        self.root.columnconfigure(0, weight=1) # Make the single column expand
 
         self.dir_label = ttk.Label(dir_frame, text=translations[self.lang]['directory_label'])
         self.dir_label.grid(row=0, column=0, padx=(0, 5), sticky="w")
@@ -120,43 +286,60 @@ class FileOrganizerApp:
         self.dir_path = tk.StringVar()
         self.dir_entry = ttk.Entry(dir_frame, textvariable=self.dir_path, width=50)
         self.dir_entry.grid(row=0, column=1, sticky="ew")
-        dir_frame.columnconfigure(1, weight=1)
+        dir_frame.columnconfigure(1, weight=1) # Make the entry field expand
 
         self.browse_button = ttk.Button(dir_frame, text=translations[self.lang]['browse_button'], command=self.browse_directory)
         self.browse_button.grid(row=0, column=2, padx=(5, 0))
         
         # Frame for controls
-        control_frame = ttk.Frame(self.root, padding="10")
-        control_frame.grid(row=1, column=0, columnspan=3, sticky="ew")
+        control_frame = ttk.Frame(self.root)
+        control_frame.grid(row=1, column=0, sticky="ew", padx=10, pady=(5,10))
 
-        # Language selection
-        self.lang_label = ttk.Label(control_frame, text=translations[self.lang]['language_label'])
-        self.lang_label.pack(side="left", padx=(0, 5))
+        # Configure control_frame grid to be a 2x2 with equal weight for centering
+        control_frame.columnconfigure(0, weight=1)
+        control_frame.columnconfigure(1, weight=1)
+        control_frame.rowconfigure(0, weight=1)
+        control_frame.rowconfigure(1, weight=1)
+
+        # --- Language Setting (Top-Left) ---
+        lang_frame = ttk.Frame(control_frame)
+        lang_frame.grid(row=0, column=0, pady=5)
+        lang_frame.columnconfigure(0, weight=1)
+        lang_frame.columnconfigure(1, weight=1)
+        
+        self.lang_label = ttk.Label(lang_frame, text=translations[self.lang]['language_label'])
+        self.lang_label.grid(row=0, column=0, padx=(0,5), sticky="e")
 
         self.lang_selection = tk.StringVar()
-        self.lang_combobox = ttk.Combobox(control_frame, textvariable=self.lang_selection,
-                                          values=list(translations.keys()), state="readonly", width=5)
-        self.lang_combobox.pack(side="left", padx=(0, 10))
-        self.lang_combobox.set(self.lang) # Set initial value
+        self.lang_combobox = ttk.Combobox(lang_frame, textvariable=self.lang_selection,
+                                          values=list(translations.keys()), state="readonly", width=7)
+        self.lang_combobox.grid(row=0, column=1, sticky="w")
+        self.lang_combobox.set(self.lang)
         self.lang_combobox.bind("<<ComboboxSelected>>", self.change_language)
 
-        # Font Size selection
-        self.font_size_label = ttk.Label(control_frame, text=translations[self.lang]['font_size_label'])
-        self.font_size_label.pack(side="left", padx=(0, 5))
+        # --- Font Size Setting (Top-Right) ---
+        font_frame = ttk.Frame(control_frame)
+        font_frame.grid(row=0, column=1, pady=5)
+        font_frame.columnconfigure(0, weight=1)
+        font_frame.columnconfigure(1, weight=1)
 
-        self.current_font_size_key = tk.StringVar(value="medium") # Default font size
-        self.font_size_combobox = ttk.Combobox(control_frame, textvariable=self.current_font_size_key,
-                                               values=["small", "medium", "large"], state="readonly", width=7)
-        self.font_size_combobox.pack(side="left", padx=(0, 10))
-        self.font_size_combobox.set(self.current_font_size_key.get()) # Set initial value
+        self.font_size_label = ttk.Label(font_frame, text=translations[self.lang]['font_size_label'])
+        self.font_size_label.grid(row=0, column=0, padx=(0,5), sticky="e")
+
+        self.current_font_size_key = tk.StringVar(value="medium")
+        self.font_size_combobox = ttk.Combobox(font_frame, textvariable=self.current_font_size_key,
+                                               values=["small", "medium", "large"], state="readonly", width=10)
+        self.font_size_combobox.grid(row=0, column=1, sticky="w")
+        self.font_size_combobox.set(self.current_font_size_key.get())
         self.font_size_combobox.bind("<<ComboboxSelected>>", self.change_font_size)
-
-        # Instructions and Organize buttons
-        self.instructions_button = ttk.Button(control_frame, text=translations[self.lang]['instructions_button'], command=self.show_instructions)
-        self.instructions_button.pack(side="left")
         
+        # --- Instructions Button (Bottom-Left) ---
+        self.instructions_button = ttk.Button(control_frame, text=translations[self.lang]['instructions_button'], command=self.show_instructions)
+        self.instructions_button.grid(row=1, column=0, sticky="ew", padx=5, pady=5)
+        
+        # --- Organize Button (Bottom-Right) ---
         self.organize_button = ttk.Button(control_frame, text=translations[self.lang]['organize_button'], command=self.run_organization)
-        self.organize_button.pack(side="right")
+        self.organize_button.grid(row=1, column=1, sticky="ew", padx=5, pady=5)
 
     def browse_directory(self):
         """Open a dialog to select a directory."""
@@ -166,23 +349,39 @@ class FileOrganizerApp:
 
     def show_instructions(self):
         """Show the instruction popup."""
-        messagebox.showinfo(
-            translations[self.lang]['instructions_title'],
-            translations[self.lang]['instructions_text']
+        current_font = self.fonts[self.current_font_size_key.get()]
+        CustomMessageDialog(
+            self.root,
+            title=translations[self.lang]['instructions_title'],
+            message=translations[self.lang]['instructions_text'],
+            lang=self.lang,
+            font=current_font
         )
         
     def run_organization(self):
         """Run the file organization process."""
         target_dir = self.dir_path.get()
         if not target_dir:
-            messagebox.showwarning(translations[self.lang]['warning_title'], translations[self.lang]['warning_text'])
+            current_font = self.fonts[self.current_font_size_key.get()]
+            CustomMessageDialog(
+                self.root,
+                title=translations[self.lang]['warning_title'],
+                message=translations[self.lang]['warning_text'],
+                lang=self.lang,
+                font=current_font
+            )
             return
 
-        if messagebox.askyesno(
-            translations[self.lang]['confirm_title'],
-            translations[self.lang]['confirm_text'] % target_dir
-        ):
-            organize_files(target_dir, self.lang)
+        current_font = self.fonts[self.current_font_size_key.get()]
+        confirm_dialog = CustomConfirmDialog(
+            self.root,
+            title=translations[self.lang]['confirm_title'],
+            message=translations[self.lang]['confirm_text'] % target_dir,
+            lang=self.lang,
+            font=current_font
+        )
+        if confirm_dialog.result:
+            organize_files(self.root, target_dir, self.lang, current_font)
 
     def change_language(self, event=None):
         """Change the application's language based on combobox selection."""
