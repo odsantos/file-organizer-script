@@ -86,25 +86,21 @@ class FileOrganizerApp:
     The main GUI for the File Organizer application.
     """
     def __init__(self, root):
-        print("FileOrganizerApp: __init__ started.")
         self.root = root
         self.lang = 'en'
         self.fonts = {} # Declare self.fonts here, but initialize with Font objects later
+        self.style = ttk.Style(self.root)
         self.create_widgets()
         self.update_ui_language()
-        print("FileOrganizerApp: __init__ finished.")
 
     def create_widgets(self):
         """Create and layout the widgets."""
-        print("create_widgets: started.")
         # Initialize fonts here after root is fully set up
-        print("create_widgets: Initializing fonts...")
         self.fonts = {
             "small": font.Font(family="Helvetica", size=10),
             "medium": font.Font(family="Helvetica", size=12),
             "large": font.Font(family="Helvetica", size=14),
         }
-        print("create_widgets: Fonts initialized.")
         self.root.title(translations[self.lang]['title'])
         try:
             icon_path = get_icon_path()
@@ -161,7 +157,6 @@ class FileOrganizerApp:
         
         self.organize_button = ttk.Button(control_frame, text=translations[self.lang]['organize_button'], command=self.run_organization)
         self.organize_button.pack(side="right")
-        print("create_widgets: finished.")
 
     def browse_directory(self):
         """Open a dialog to select a directory."""
@@ -203,35 +198,23 @@ class FileOrganizerApp:
 
     def apply_fonts_to_widgets(self):
         """Apply the currently selected font size to all relevant widgets."""
-        print("apply_fonts_to_widgets: started.")
-        print(f"apply_fonts_to_widgets: Getting font for key: {self.current_font_size_key.get()}")
         current_font = self.fonts[self.current_font_size_key.get()]
-        print("apply_fonts_to_widgets: Font object retrieved.")
 
-        print("apply_fonts_to_widgets: Applying font to dir_label...")
+        # For ttk widgets like Label, Entry, and Combobox, .config(font=...) works.
         self.dir_label.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to dir_entry...")
         self.dir_entry.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to browse_button...")
-        self.browse_button.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to instructions_button...")
-        self.instructions_button.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to organize_button...")
-        self.organize_button.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to lang_label...")
         self.lang_label.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to lang_combobox...")
         self.lang_combobox.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to font_size_label...")
         self.font_size_label.config(font=current_font)
-        print("apply_fonts_to_widgets: Applying font to font_size_combobox...")
         self.font_size_combobox.config(font=current_font)
-        print("apply_fonts_to_widgets: finished.")
-        # Note: messagebox fonts are system-dependent and usually cannot be changed directly via Tkinter
+
+        # For ttk.Button, we must use a Style.
+        self.style.configure('TButton', font=current_font)
+        
+        # Note: messagebox fonts are system-dependent and cannot be changed.
 
     def update_ui_language(self):
         """Update all UI text elements to the current language."""
-        print("update_ui_language: started.")
         self.root.title(translations[self.lang]['title'])
         self.dir_label.config(text=translations[self.lang]['directory_label'])
         self.browse_button.config(text=translations[self.lang]['browse_button'])
@@ -242,40 +225,16 @@ class FileOrganizerApp:
         self.font_size_label.config(text=translations[self.lang]['font_size_label'])
         # Font size combobox values are fixed keys, but their displayed text might be translated in the future if we use a mapping
         # For now, we update the label and re-apply fonts
-        print("update_ui_language: Calling apply_fonts_to_widgets.")
         self.apply_fonts_to_widgets()
-        print("update_ui_language: finished.")
 
 
 def main():
     """
     The main function to create and run the GUI.
     """
-    try:
-        log_path = Path.home() / 'organizer_log.txt'
-        with open(log_path, 'w') as log_file:
-            sys.stdout = log_file
-            sys.stderr = log_file
-            print("--- File Organizer Log ---")
-
-            root = tk.Tk()
-            print("main: tk.Tk() created.")
-            FileOrganizerApp(root) # Instantiating the app class makes it run
-            print("main: FileOrganizerApp instance created.")
-            root.mainloop()
-            print("main: mainloop finished.")
-    except Exception as e:
-        # If logging setup fails, try to show an error dialog
-        import traceback
-        error_message = f"A fatal error occurred:\n\n{traceback.format_exc()}"
-        try:
-            # Try to show a tkinter error box
-            root = tk.Tk()
-            root.withdraw() # Hide the main window
-            messagebox.showerror("Fatal Error", error_message)
-        except Exception:
-            # Fallback if tkinter itself is the problem
-            print(error_message)
+    root = tk.Tk()
+    FileOrganizerApp(root) # Instantiating the app class makes it run
+    root.mainloop()
 
 if __name__ == "__main__":
     main()
