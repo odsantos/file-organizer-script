@@ -74,6 +74,9 @@ jobs:
           cp ../install.sh .
           cp ../uninstall.sh .
           cp ../file-organizer.desktop .
+          # Make scripts executable
+          chmod +x install.sh
+          chmod +x uninstall.sh
           # Zip everything together
           zip -r "../File-Organizer-Linux.zip" "File Organizer" assets install.sh uninstall.sh file-organizer.desktop
 
