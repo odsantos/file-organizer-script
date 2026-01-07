@@ -94,7 +94,6 @@ class FileOrganizerApp:
             "large": font.Font(family="Helvetica", size=14),
         }
         self.create_widgets()
-        self.update_ui_language()
 
     def create_widgets(self):
         """Create and layout the widgets."""
@@ -154,6 +153,8 @@ class FileOrganizerApp:
         
         self.organize_button = ttk.Button(control_frame, text=translations[self.lang]['organize_button'], command=self.run_organization)
         self.organize_button.pack(side="right")
+
+        self.apply_fonts_to_widgets()
 
     def browse_directory(self):
         """Open a dialog to select a directory."""
