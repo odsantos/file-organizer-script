@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=File Organizer
+Comment=A simple tool to organize files by extension.
+Exec=file-organizer
+Icon=file-organizer
+Categories=Utility;
+Terminal=false

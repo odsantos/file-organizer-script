@@ -70,7 +70,12 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           cd dist
-          zip "../File-Organizer-Linux.zip" "File Organizer"
+          # Copy the installation and desktop files into the dist folder
+          cp ../install.sh .
+          cp ../uninstall.sh .
+          cp ../file-organizer.desktop .
+          # Zip everything together
+          zip -r "../File-Organizer-Linux.zip" "File Organizer" assets install.sh uninstall.sh file-organizer.desktop
 
       - name: Package Artifact (macOS)
         if: matrix.os == 'macos-latest'
