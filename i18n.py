@@ -43,6 +43,7 @@ translations = {
         "yes_button": "Yes",
         "no_button": "No",
         "ok_button": "OK",
+        "folder_name_template": "%s Files",
     },
     "pt": {
         "title": "Organizador de Ficheiros",
@@ -79,5 +80,6 @@ translations = {
         "yes_button": "Sim",
         "no_button": "Não",
         "ok_button": "OK",
+        "folder_name_template": "Arquivos %s",
     }
 }

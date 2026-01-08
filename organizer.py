@@ -62,7 +62,7 @@ def organize_files(root, target_directory, lang='en', font=None):
         if not file_extension:
             continue
 
-        dir_name = f"{file_extension[1:].upper()} Files"
+        dir_name = translations[lang]["folder_name_template"] % file_extension[1:].upper()
         dest_dir = target_path / dir_name
         dest_dir.mkdir(exist_ok=True)
         
