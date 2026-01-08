@@ -66,31 +66,43 @@ jobs:
           Compress-Archive -Path "File Organizer.exe" -DestinationPath "../File-Organizer-Windows.zip"
         shell: pwsh
 
-      - name: Package Artifact (Linux)
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          cd dist
-          # Copy the installation and desktop files into the dist folder
-          cp ../install.sh .
-          cp ../uninstall.sh .
-          cp ../file-organizer.desktop .
-          # Make scripts executable
-          chmod +x install.sh
-          chmod +x uninstall.sh
-          # Zip everything together
-          zip -r "../File-Organizer-Linux.zip" "File Organizer" assets install.sh uninstall.sh file-organizer.desktop
-
       - name: Package Artifact (macOS)
         if: matrix.os == 'macos-latest'
         run: |
           cd dist
           zip -r "../File-Organizer-macOS.zip" "File Organizer.app"
 
+      - name: Build AppImage (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          # Download appimagetool
+          wget -c "https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage" -O appimagetool.AppImage
+          chmod +x appimagetool.AppImage
+          # Create AppDir structure
+          mkdir -p AppDir/usr/bin
+          # Copy executable
+          cp "dist/File Organizer" AppDir/usr/bin/file-organizer
+          # Copy desktop file and icon
+          cp file-organizer.desktop AppDir/
+          # The icon path in the .desktop file is just the name of the icon, without the extension.
+          # The icon file itself should be placed in the root of the AppDir.
+          cp assets/images/icon-1024x1024.png AppDir/file-organizer.png
+          # Create AppRun
+          # The AppRun file is the entry point of the AppImage.
+          # It's a script that executes the main binary.
+          # For a simple case like this, we can just create a symlink.
+          ln -s usr/bin/file-organizer AppDir/AppRun
+          # Generate AppImage
+          ./appimagetool.AppImage AppDir "File-Organizer-Linux.AppImage"
+
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: File-Organizer-${{ matrix.os }}
-          path: File-Organizer-*.zip
+          path: |
+            File-Organizer-*.zip
+            File-Organizer-Linux.AppImage
 
   release:
     name: Create GitHub Release
@@ -108,6 +120,8 @@ jobs:
       - name: Create Release and Upload Assets
         uses: softprops/action-gh-release@v1
         with:
-          files: artifacts/*/*.zip
+          files: |
+            artifacts/*/*.zip
+            artifacts/*/*.AppImage
           draft: true
           generate_release_notes: true
