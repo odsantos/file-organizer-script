@@ -1,6 +1,6 @@
 # File Organizer
 
-A simple but powerful utility to automatically organize the files in a directory into clean, type-based subfolders.
+A simple utility to automatically organize the files in a directory into clean, type-based subfolders.
 
 ## What It Does
 
@@ -18,6 +18,7 @@ This script scans a target folder (like your `Downloads` directory) and moves fi
 -   **Smart Conflict Resolution**: Automatically renames files if a file with the same name already exists in the destination.
 -   **Convenient**: Defaults to your "Downloads" folder on first launch.
 -   **Accessible**: Features adjustable font sizes (Small, Medium, Large).
+-   **Multi-language Support**: Choose between English and Portuguese.
 
 ## Installation and Usage
 
@@ -26,10 +27,10 @@ This script scans a target folder (like your `Downloads` directory) and moves fi
 The easiest way to get started is to purchase and download the ready-to-use application from our official Gumroad page.
 
 1.  [Purchase and Download from Gumroad](https://osvaldosantos.gumroad.com/l/file-organizer)
-2.  Unzip the downloaded file.
-3.  **Windows**: Double-click the `organizer.exe` file.
-4.  **macOS**: Double-click the `organizer.app` application. You may need to right-click and select "Open" the first time if you see a security warning.
-5.  **Linux**: Make the `organizer` file executable (`chmod +x organizer`) and then run it from your terminal (`./organizer`).
+2.  **Windows/macOS**: Unzip the downloaded file.
+3.  **Windows**: Double-click the `File Organizer.exe` file.
+4.  **macOS**: Open the `File Organizer.app` directory. You may need to right-click and select "Open" the first time if you see a security warning.
+5.  **Linux**: Make the AppImage executable (`chmod +x File-Organizer-Linux.AppImage`), and run it (`./File-Organizer-Linux.AppImage`).
 
 ### Using the Application
 
@@ -39,7 +40,7 @@ The easiest way to get started is to purchase and download the ready-to-use appl
 
 ### For Developers (Running from Source)
 
-If you want to run the script directly from the source code, you can clone this repository. For version history and source code archives, please see the **[GitHub Releases page](https://github.com/odsantos/file-organizer-script/releases)**.
+To run the script directly from the source code:
 
 #### Requirements
 
@@ -47,10 +48,8 @@ If you want to run the script directly from the source code, you can clone this 
 
 #### Running the Script
 
-1.  Clone the repository.
-2.  Open your terminal or command prompt.
-3.  Navigate to the `file_organizer_script` directory.
-4.  Run the script with the following command:
+1.  Clone this repository and navigate to the `file_organizer_script` directory in your terminal or command prompt.
+2.  Run the script with the following command:
     ```bash
     python3 organizer.py
     ```
