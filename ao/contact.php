@@ -1,6 +1,8 @@
 <?php
 $is_pt_page = true;
-$pageTitle = "Contacto - Organizador de Ficheiros"; include '../header.php'; ?>
+$pageTitle = "Contacto - Organizador de Ficheiros";
+include '../header.php';
+?>
 <div class="hero-intro">
     <div class="container">
         <h1>Contacte-nos</h1>
@@ -23,7 +25,7 @@ $pageTitle = "Contacto - Organizador de Ficheiros"; include '../header.php'; ?>
         }
     }
     ?>
-    <form action="../process_contact.php" method="POST">
+    <form action="../process_contact.php" method="POST" class="contact-form">
         <label for="name">Nome:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 

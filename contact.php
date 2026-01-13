@@ -31,7 +31,7 @@ if (empty($_SESSION['csrf_token'])) {
         }
     }
     ?>
-    <form action="process_contact.php" method="POST">
+    <form action="process_contact.php" method="POST" class="contact-form">
         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>

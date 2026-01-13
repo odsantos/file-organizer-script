@@ -6,18 +6,17 @@ $pageTitle = "Organizador de Arquivos - Organização Inteligente para Profissio
 include '../header.php';
 ?>
 
-
+<main>
 
     <section class="hero-intro">
         <div class="container">
-            <h1>Organização Digital para Profissionais</h1>
+            <h2>Organização Digital para Profissionais</h2>
             <p>Pare de perder tempo à procura de documentos. Organize milhares de processos jurídicos, faturas e arquivos de clientes instantaneamente com apenas um clique.</p>
             <a href="https://osvaldosantos.gumroad.com/l/file-organizer" class="cta-button">Comprar Agora - Acesso Vitalício</a>
         </div>
     </section>
 
-    <main class="container">
-
+    <div class="container"> 
         <section id="features">
             <h2>Por que escolher o File Organizer?</h2>
             <div class="features-grid">
@@ -65,6 +64,7 @@ include '../header.php';
                 </div>
             </div>
 
+            <!-- STEP 2 -->
             <div class="step">
                 <div class="step-text">
                     <h3>2. Clique em Organizar</h3>
@@ -75,6 +75,7 @@ include '../header.php';
                 </div>
             </div>
 
+            <!-- STEP 3 -->
             <div class="step">
                 <div class="step-text">
                     <h3>3. Magia Instantânea!</h3>
@@ -97,21 +98,20 @@ include '../header.php';
             </div>
         </section>
 
-        <section id="local-trust" style="background: #f8f9fa; padding: 40px 20px; text-align: center; border-radius: 8px; margin: 40px 0;">
+        <section id="local-trust">
             <div class="container">
                 <h2>Privacidade de dados</h2>
                 <p>Este software atende às necessidades de organização de profissionais locais e garante a privacidade dos seus dados, pois processa tudo localmente no seu computador.</p>
             </div>
         </section>
 
-        <section id="developer" style="margin-bottom: 30px;">
+        <section id="developer">
             <div class="container">
                 <h2>Ver no GitHub</h2>
                 <p>O projeto, contendo o código-fonte e a licença, está disponível para consulta.</p>
                 <a href="https://github.com/odsantos/file-organizer-script" class="cta-button">Ver Repositório</a>
             </div>
         </section>
-
-    </main>
-
+    </div>
+</main>
 <?php include '../footer.php'; ?>

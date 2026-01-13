@@ -8,7 +8,7 @@ $pageTitle = "Política de Privacidade - Organizador de Ficheiros"; include '../
     </div>
 </div>
 
-<main class="container">
+<main class="container privacy-container">
     <h2>Informações que Recolhemos</h2>
     <p>O Organizador de Ficheiros é principalmente uma aplicação do lado do cliente, e o próprio site recolhe informações mínimas. Podemos recolher informações não pessoalmente identificáveis através de análises web padrão (por exemplo, Google Analytics) para entender o tráfego do site e os padrões de uso. Estes dados ajudam-nos a melhorar o site e a experiência do utilizador. NÃO recolhemos informações pessoais como o seu nome, endereço de e-mail ou detalhes de pagamento diretamente através da aplicação ou deste site, a menos que as forneça voluntariamente (por exemplo, através do formulário de contacto).</p>
     <h2>Como Usamos as Suas Informações</h2>
@@ -17,6 +17,6 @@ $pageTitle = "Política de Privacidade - Organizador de Ficheiros"; include '../
     <p>Implementamos medidas de segurança técnicas e organizacionais apropriadas, destinadas a proteger qualquer informação recolhida contra destruição, perda, alteração, divulgação não autorizada ou acesso acidental ou ilegal. No entanto, lembre-se de que nenhum método de transmissão pela Internet ou método de armazenamento eletrónico é 100% seguro. Embora nos esforcemos para usar meios comercialmente aceitáveis para proteger as suas informações, não podemos garantir a sua segurança absoluta.</p>
     <h2>Alterações a Esta Política</h2>
     <p>Podemos atualizar a nossa Política de Privacidade de tempos em tempos. Iremos notificá-lo de quaisquer alterações, publicando a nova Política de Privacidade nesta página. Aconselhamos que reveja esta Política de Privacidade periodicamente para quaisquer alterações. As alterações a esta Política de Privacidade são efetivas quando são publicadas nesta página.</p>
-    <p>Última atualização: 13 de dezembro de 2025</p>
+    <p>Última atualização: 13 de Dezembro de 2025</p>
 </main>
 <?php include '../footer.php'; ?>

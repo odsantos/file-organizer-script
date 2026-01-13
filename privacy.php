@@ -6,7 +6,7 @@
     </div>
 </div>
 
-<main class="container">
+<main class="container privacy-container">
     <h2>Information We Collect</h2>
     <p>File Organizer is primarily a client-side application, and the website itself collects minimal information. We may collect non-personally identifiable information through standard web analytics (e.g., Google Analytics) to understand website traffic and usage patterns. This data helps us improve the website and user experience. We do NOT collect personal information such as your name, email address, or payment details directly through the application or this website, unless you voluntarily provide it (e.g., via the contact form).</p>
     <h2>How We Use Your Information</h2>

@@ -1,35 +1,144 @@
-:root {
-    --primary-color: #007bff;
-    --primary-hover: #0056b3;
-    --text-color: #333;
-    --bg-color: #ffffff;
-    --light-gray: #f8f9fa;
-    --border-color: #dee2e6;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+html {
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    font-family: var(--bs-font-sans-serif);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--card-background); /* Corrected background */
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.8; /* Original file_organizer_script line height */
     margin: 0;
     padding: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+}
+
+main {
+    flex-grow: 1;
+    padding: 0;
+}
+
+:root {
+  --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  /* Light Theme (Cobalt-based) */
+  --background-primary: #f5f9fc; /* Very light blue-gray, slightly lighter */
+  --background-primary-gradient: linear-gradient(to bottom right, #f0f4f8, #e0e7ed); /* Subtle gradient for light theme */
+  --background-secondary: #e0e7ed; /* Light blue-gray */
+  --text-primary: #1a2a3a; /* Dark blue-gray for text */
+  --text-secondary: #4a6a8a; /* Medium blue-gray for secondary text */
+  --accent-color: #0047ab; /* Classic Cobalt Blue */
+  --card-background: #ffffff; /* White cards */
+  --card-border: #c0d0e0; /* Light blue border */
+  --nav-background: #003366; /* Darker Cobalt for nav */
+  --nav-text: #e0e7ed; /* Light text for nav */
+  --nav-text-hover: #ffffff; /* White text on hover for nav */
+  --navbar-brand-color: #ffffff; /* White for brand in light nav */
+  --theme-switcher-border: var(--nav-text); /* Border color for switcher */
+  --theme-switcher-color: var(--nav-text); /* Color for emoji */
+  --theme-switcher-hover-border: var(--nav-text-hover); /* Hover border color */
+  --theme-switcher-hover-color: var(--nav-text-hover); /* Hover emoji color */
+  --theme-switcher-hover-bg-cobalt: #0047ab; /* Cobalt for hover background */
+
+    /* Original file_organizer_script variables, adjusted to new theme */
+    --primary-color: var(--accent-color); /* Use accent color for primary */
+    --primary-hover: #0056b3; /* Keep original hover or adjust if needed */
+    --text-color: var(--text-primary);
+    --bg-color: var(--background-primary);
+    --border-color: var(--card-border);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme {
+  /* Dark Theme (Cobalt-based) */
+  --background-primary: #0a1a2a; /* Very dark blue */
+  --background-primary-gradient: linear-gradient(to bottom right, #0a1a2a, #1a2a3a); /* Subtle gradient for dark theme */
+  --background-secondary: #1a2a3a; /* Dark blue */
+  --text-primary: #e0e7ed; /* Light blue-gray for text */
+  --text-secondary: #8a9aaa; /* Muted light blue-gray for secondary text */
+  --accent-color: #3b82f6; /* Brighter blue for accent */
+  --card-background: #1a2a3a; /* Dark blue cards */
+  --card-border: #2a3a4a; /* Slightly lighter dark blue border */
+  --nav-background: #0a1a2a; /* Very dark blue for nav */
+  --nav-text: #8a9aaa; /* Muted light text for nav */
+  --nav-text-hover: #ffffff; /* White text on hover for nav */
+  --navbar-brand-color: #ffffff; /* White for brand in dark nav */
+  --theme-switcher-border: var(--nav-text); /* Border color for switcher */
+  --theme-switcher-color: var(--nav-text); /* Color for emoji */
+  --theme-switcher-hover-border: var(--nav-text-hover); /* Hover border color */
+  --theme-switcher-hover-color: var(--nav-text-hover); /* Hover emoji color */
+  --theme-switcher-hover-bg-cobalt: #3b82f6; /* Brighter Cobalt for hover background in dark mode */
+
+    /* Original file_organizer_script variables, adjusted for dark theme */
+    --primary-color: var(--accent-color);
+    --primary-hover: #0056b3; /* Adjust if a darker hover is desired for dark theme */
+    --text-color: var(--text-primary);
+    --bg-color: var(--background-primary);
+    --border-color: var(--card-border);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.navbar {
+    background-color: var(--nav-background) !important;
+}
+
+.navbar-brand {
+    color: var(--navbar-brand-color) !important; /* Apply brand color */
+}
+
+.nav-link {
+    color: var(--nav-text) !important;
+}
+
+.nav-link:hover {
+    color: var(--nav-text-hover) !important;
+}
+
+.theme-switcher-btn {
+    background-color: transparent; /* Remove background */
+    border: none; /* Remove border */
+    color: var(--theme-switcher-color); /* Color of the emoji */
+    transition: all 0.3s ease; /* Smooth transitions for all properties */
+    transform: translateY(-1px);
+}
+
+.theme-switcher-btn:hover {
+    background-color: var(--theme-switcher-hover-bg-cobalt); /* Background on hover, using new Cobalt color */
+    border-color: var(--theme-switcher-hover-bg-cobalt); /* Border color on hover */
+    color: var(--theme-switcher-hover-color); /* Emoji color on hover */
+}
+
+.language-switcher-links {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem; /* Match nav-link padding */
+    color: var(--nav-text) !important;
+}
+
+.language-switcher-links a {
+    color: var(--nav-text) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.language-switcher-links a:hover {
+    color: var(--nav-text-hover) !important;
 }
 
 .center-text {
     text-align: center;
 }
 
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
 
-/* --- Header --- */
-header {
+.banner-container {
     background: linear-gradient(to right, #030207 20%, #051537 60%, #02255C 80%, #010A18 95%, #000205 100%);
     display: flex;
     justify-content: center;
@@ -38,42 +147,18 @@ header {
     position: relative;
 }
 
-header img {
+.banner-container img {
     max-height: 350px;
     width: auto;
     -webkit-mask-image: linear-gradient(to right, black 94%, transparent 100%);
     mask-image: linear-gradient(to right, black 94%, transparent 100%);
+    transform: translateX(-50px);
 }
-
-header nav {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    width: 100%;
-    padding: 0 20px;
-    box-sizing: border-box;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 1em;
-    font-weight: 500;
-}
-
-header nav > div:last-child a:first-child::after {
-    content: '|';
-    margin: 0 10px;
-}
-
 
 .hero-intro {
-    background: var(--light-gray);
+    background: var(--background-secondary);
     padding: 60px 0;
+    margin-top: 50px;
     text-align: center;
 }
 
@@ -101,13 +186,8 @@ header nav > div:last-child a:first-child::after {
     transform: translateY(-2px);
 }
 
-/* --- Main Content --- */
-main {
-    padding: 60px 0;
-}
-
 section {
-    padding: 40px 0;
+    padding: 50px 0;
 }
 
 h1 {
@@ -115,6 +195,7 @@ h1 {
     font-size: 2.2em;
     margin-bottom: 60px;
     position: relative;
+    color: var(--text-primary); /* Use themed text color */
 }
 
 h2 {
@@ -122,6 +203,7 @@ h2 {
     font-size: 1.6em;
     margin-bottom: 60px;
     position: relative;
+    color: var(--text-primary); /* Use themed text color */
 }
 
 h2::after {
@@ -134,6 +216,10 @@ h2::after {
 }
 
 /* --- Features Section --- */
+#features {
+    padding-top: 160px;
+}
+
 #features .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -142,7 +228,7 @@ h2::after {
 }
 
 .feature {
-    background: var(--light-gray);
+    background: var(--background-secondary);
     padding: 30px;
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -161,7 +247,9 @@ h2::after {
 
 /* --- Before & After Section --- */
 #before-after {
-    background-color: var(--light-gray);
+    background: var(--background-primary);
+    border-radius: 8px;
+    padding: 40px;
 }
 
 .comparison-grid {
@@ -184,6 +272,10 @@ h2::after {
 }
 
 /* --- How It Works (Screenshot Showcase) --- */
+#how-it-works {
+    padding: 160px 0 90px 0;
+}
+
 .step {
     display: flex;
     align-items: center;
@@ -245,60 +337,41 @@ h2::after {
     }
 }
 
+/* --- Local-trust Section --- */
+#local-trust {
+    background: var(--background-primary);
+    border-radius: 8px;
+    padding: 50px 40px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
 /* --- Developer Section --- */
 #developer {
-    text-align: center;
-    background: var(--light-gray);
-    padding: 60px 20px;
+    background: var(--background-secondary);
     border-radius: 8px;
+    padding: 90px 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 #developer p {
     margin-bottom: 20px;
 }
 
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 40px 0;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.9em;
-    width: 100%;
-    background: var(--light-gray);
-}
-
-footer nav a {
-    color: var(--primary-color);
+footer a {
+    color: var(--nav-text);
     text-decoration: none;
 }
 
-footer nav a:hover {
+footer a:hover {
+    color: var(--nav-text-hover);
     text-decoration: underline;
 }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column; /* Stack Nav and Image vertically */
-        height: auto;
-        padding: 20px 0;        /* Space at top and bottom */
-        overflow: visible;
-    }
-
-    header nav {
-        position: static;       /* Remove from "floating" layer */
-        width: 100%;
-        text-align: center;     /* Center the Home link */
-        margin-bottom: 15px;    /* Push the image down */
-    }
-
-    header nav a {
-        display: inline-block;
-        padding: 5px 10px;      /* Buffer to prevent vertical cutting */
-        line-height: 1.2;
-    }
-
-    header img {
+    .banner-container img {
         max-height: 180px;      /* Smaller height for mobile screens */
         width: 90%;             /* Don't let it touch the edges */
         object-fit: contain;
@@ -322,19 +395,18 @@ footer nav a:hover {
 
 /* Contact Form Styles */
 form {
-    margin-top: 20px;
-    margin-bottom: 40px; /* Added for vertical space above footer */
+    margin: 60px auto 50px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color); /* Use themed border color */
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--card-background); /* Use themed background color */
 }
 
 form label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #555;
+    color: var(--text-primary); /* Use themed text color */
 }
 
 form input[type="text"],
@@ -343,17 +415,19 @@ form textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color); /* Use themed border color */
     border-radius: 5px;
     box-sizing: border-box; /* Ensures padding doesn't increase total width */
     font-size: 16px;
     transition: border-color 0.3s ease;
+    background-color: var(--background-primary); /* Use themed background */
+    color: var(--text-primary); /* Use themed text color */
 }
 
 form input[type="text"]:focus,
 form input[type="email"]:focus,
 form textarea:focus {
-    border-color: #007bff;
+    border-color: var(--accent-color); /* Use themed accent color */
     outline: none;
 }
 
@@ -363,7 +437,7 @@ form textarea {
 }
 
 form input[type="submit"] {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     padding: 12px 25px;
     border: none;
@@ -375,7 +449,7 @@ form input[type="submit"] {
 }
 
 form input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover);
 }
 
 /* Basic Honeypot for spam prevention */
@@ -385,8 +459,12 @@ form div[style*="display:none"] {
 
 
 /* FAQ Accordion Styles */
+.support-faq {
+    margin-top: 50px;
+}
+
 .faq-item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color); /* Use themed border color */
     margin-bottom: 5px;
     padding-bottom: 5px;
 }
@@ -395,25 +473,30 @@ form div[style*="display:none"] {
     cursor: pointer;
     padding: 10px; /* Increased padding */
     font-weight: bold;
-    color: #333;
+    color: var(--text-primary); /* Use themed text color */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f9f9f9; /* Subtle default background */
+    background-color: var(--background-secondary); /* Use themed background color */
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+h3.faq-question {
+    font-size: 1em; /* Adjust for better proportion */
+    margin: 0; /* Remove default margin */
+}
+
 .faq-question:hover {
-    background-color: #e0e0e0; /* Darker background on hover */
-    color: #000; /* Slightly darker text on hover */
+    background-color: var(--background-primary); /* Darker background on hover */
+    color: var(--text-primary); /* Slightly darker text on hover */
 }
 
 .faq-question.active {
-    background-color: #f0f0f0; /* Still light gray background for active question */
+    background-color: var(--background-secondary); /* Still light gray background for active question */
     border-bottom-left-radius: 0; /* Remove bottom-left radius when active */
     border-bottom-right-radius: 0; /* Remove bottom-right radius when active */
-    color: #007bff; /* Change text color when active to draw more attention */
+    color: var(--accent-color); /* Change text color when active to draw more attention */
 }
 
 .faq-question::after {
@@ -430,13 +513,12 @@ form div[style*="display:none"] {
 .faq-answer {
     cursor: default; /* Explicitly set default cursor for answer */
     padding: 10px; /* Adjust padding */
-    border: 1px solid #f0f0f0; /* Add a border */
+    border: 1px solid var(--border-color); /* Add a border */
     border-top: none; /* No top border */
     border-bottom-left-radius: 5px; /* Rounded corners for bottom */
     border-bottom-right-radius: 5px; /* Rounded corners for bottom */
     margin-top: -1px; /* Overlap border with question's bottom border */
-    background-color: #fdfdfd; /* Slightly different background */
-    color: #555;
+    background-color: var(--card-background); /* Slightly different background */
     display: none; /* Hidden by default */
     overflow: hidden;
     transition: max-height 0.3s ease-out;
@@ -460,4 +542,9 @@ form div[style*="display:none"] {
 
 .regular-link:hover {
     text-decoration: underline;
+}
+
+.privacy-container,
+.terms-container {
+    margin-top: 70px;
 }
