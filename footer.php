@@ -17,7 +17,7 @@
                 <a href="<?php echo $base_path_footer; ?>/privacy.php"><?php echo $privacy_text; ?></a> |
                 <a href="<?php echo $base_path_footer; ?>/terms.php"><?php echo $terms_text; ?></a>
             </nav>
-            <p>&copy; <?php echo date("Y"); ?> Osvaldo Santos. All Rights Reserved.</p>
+            <p>&copy; 2024-<?php echo date("Y"); ?> Osvaldo Santos | Licensed under MIT</p>
         </div>
     </footer>
 

@@ -13,43 +13,49 @@ This script scans a target folder (like your `Downloads` directory) and moves fi
 
 ## Features
 
--   **Easy-to-Use Interface**: A simple and clean graphical user interface (GUI).
--   **Standalone Executables**: No need to install Python or any other dependencies. Just download and run.
--   **Smart Conflict Resolution**: Automatically renames files if a file with the same name already exists in the destination.
--   **Convenient**: Defaults to your "Downloads" folder on first launch.
--   **Accessible**: Features adjustable font sizes (Small, Medium, Large).
--   **Multi-language Support**: Choose between English and Portuguese.
+- **Easy-to-Use Interface**: A simple and clean graphical user interface (GUI).
+- **Standalone Executables**: No need to install Python. Just download and run.
+- **Direct Access**: When unzipped, you will find the app files directly (no `dist` folder nesting).
+- **Smart Conflict Resolution**: Automatically renames files (e.g., `file_1.jpg`) if a duplicate exists in the destination.
+- **Self-Aware**: The application will never move its own executable or script, even if it's sitting inside the folder being organized.
+- **Accessible**: Features adjustable font sizes (Small, Medium, Large).
+- **Multi-language Support**: Fully translated into English and Portuguese.
 
 ## Installation and Usage
 
 ### For Most Users (Recommended)
 
-The easiest way to get started is to purchase and download the ready-to-use application from our official Gumroad page.
+The easiest way to get started is to download the ready-to-use application from our official page.
 
-1.  [Purchase and Download from Gumroad](https://osvaldosantos.gumroad.com/l/file-organizer)
-2.  **Windows/macOS**: Unzip the downloaded file.
-3.  **Windows**: Double-click the `File Organizer.exe` file.
-4.  **macOS**: Open the `File Organizer.app` directory. You may need to right-click and select "Open" the first time if you see a security warning.
-5.  **Linux**: Make the AppImage executable (`chmod +x File-Organizer-Linux.AppImage`), and run it (`./File-Organizer-Linux.AppImage`).
+1. [Download from Gumroad](https://osvaldosantos.gumroad.com/l/file-organizer)
+2. **Windows**: Unzip the file. You will see `File Organizer.exe`. Double-click to run it.
+3. **macOS**: Unzip the file. You will see a `File Organizer.app` folder. Drag it to your Applications folder or open it directly.
+   *Note: You may need to **Right-Click > Open** the first time to bypass security warnings.*
+4. **Linux**: Download the `File-Organizer-Linux.AppImage`. 
+   *Note: You must make it executable first (`chmod +x File-Organizer-Linux.AppImage`) and then run it.*
 
 ### Using the Application
 
--   Click the **"Browse..."** button to select the directory you want to organize.
--   Click the **"Organize Files"** button to start the process.
--   A confirmation message will show you a log of what was moved.
+- Click the **"Browse..."** button to select the directory you want to organize.
+- Click the **"Organize Files"** button to start the process.
+- A confirmation message will show you a log of what was moved.
 
 ### For Developers (Running from Source)
 
 To run the script directly from the source code:
 
 #### Requirements
-
--   Python 3 must be installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
+- Python 3.x installed.
+- The `Pillow` library (for icon handling).
+- The `assets/` folder and `i18n.py` must be in the same directory as `organizer.py`.
 
 #### Running the Script
-
-1.  Clone this repository and navigate to the `file_organizer_script` directory in your terminal or command prompt.
-2.  Run the script with the following command:
+1. Clone this repository.
+2. Install dependencies:
+   ```bash
+   pip install pillow
+   ```
+3. Run the application:
     ```bash
     python3 organizer.py
     ```
@@ -60,15 +66,23 @@ This script helps you organize your files by moving them. As with any tool that 
 
 ## License
 
-This software is a commercial product. Use of this software is subject to the terms and conditions outlined in the **[End-User License Agreement (EULA)](LICENSE.md)**.
+This project is open-source software licensed under the [MIT License](LICENSE).
+
+### AI Collaboration
+
+This utility was built in collaboration with **Gemini (Google AI)**. It represents a "Human-in-the-Loop" development model where AI logic is refined and verified by the developer.
 
 ## About This Repository
 
 This repository serves as the central hub for the File Organizer project. It contains:
--   The Python source code for the File Organizer desktop application (`organizer.py`).
--   The PHP and HTML files for the official File Organizer website (e.g., `index.php`, `contact.php`, `privacy.php`, `terms.php`).
+
+- The Python source code (`organizer.py`) and translation logic (`i18n.py`).
+- The PHP/HTML files for the official website.
+- Automated GitHub Actions workflow (build.yml) for cross-platform releases.
 
 ## Support and Contact
 
 If you have any questions, encounter issues, or require support, please visit our official website and use the contact form:
-**[File Organizer Contact Page](https://fileorganizer.odsantos.com/contact.php)**
+
+- English: [fileorganizer.odsantos.com/contact.php](https://fileorganizer.odsantos.com/contact.php)
+- Português: [fileorganizer.odsantos.com/ao/contact.php](https://fileorganizer.odsantos.com/ao/contact.php)

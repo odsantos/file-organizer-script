@@ -15,7 +15,7 @@ include 'header.php';
         <div class="container">
             <h2>Tidy Up Your Files Instantly</h2>
             <p>A simple utility to automatically organize your files and folders into clean, type-based subdirectories.</p>
-            <a href="https://osvaldosantos.gumroad.com/l/file-organizer" class="cta-button">Purchase on Gumroad</a>
+            <a href="https://osvaldosantos.gumroad.com/l/file-organizer" target="_blank" rel="noopener noreferrer" class="cta-button">Purchase on Gumroad</a>
         </div>
     </section>
 

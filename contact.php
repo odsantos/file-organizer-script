@@ -32,6 +32,8 @@ if (empty($_SESSION['csrf_token'])) {
                 $errorMessage = 'An error occurred while sending your message. Please try again later.';
             } else if ($msg == 'invalid_token') {
                 $errorMessage = 'Invalid request. Please try submitting the form again.';
+            } else if ($msg == 'privacy_not_accepted') {
+                $errorMessage = 'You must agree to the privacy policy to send a message.';
             }
             echo '<div class="alert alert-danger">' . $errorMessage . '</div>';
         }

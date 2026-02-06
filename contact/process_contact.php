@@ -24,6 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    // Privacy Policy Validation
+    if (!isset($_POST['privacy_consent'])) {
+        header("Location: " . $redirect_base_path . "contact.php?status=error&msg=privacy_not_accepted");
+        exit;
+    }
+    
     // Sanitize and validate inputs
     $name = htmlspecialchars(trim($_POST["name"]), ENT_QUOTES, 'UTF-8');
     $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
