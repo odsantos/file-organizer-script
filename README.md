@@ -29,9 +29,7 @@ The easiest way to get started is to download the ready-to-use application from 
 
 1. [Download from Gumroad](https://osvaldosantos.gumroad.com/l/file-organizer)
 2. **Windows**: Unzip the file. You will see `File Organizer.exe`. Double-click to run it.
-3. **macOS**: Unzip the file. You will see a `File Organizer.app` folder. Drag it to your Applications folder or open it directly.
-   *Note: You may need to **Right-Click > Open** the first time to bypass security warnings.*
-4. **Linux**: Download the `File-Organizer-Linux.AppImage`. 
+3. **Linux**: Download the `File-Organizer-Linux.AppImage`. 
    *Note: You must make it executable first (`chmod +x File-Organizer-Linux.AppImage`) and then run it.*
 
 ### Using the Application

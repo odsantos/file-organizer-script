@@ -16,7 +16,7 @@ include '../header.php';
         </div>
     </section>
 
-    <div class="container"> 
+    <div class="container">
         <section id="features">
             <h2>Por que escolher o File Organizer?</h2>
             <div class="features-grid">
@@ -26,18 +26,20 @@ include '../header.php';
                 </div>
                 <div class="feature">
                     <h3>Sem Necessidade de Instalação</h3>
-                    <p>Funciona de forma independente no Windows, macOS ou Linux. Basta descarregar e executar.</p>
+                    <p>Funciona de forma independente no Windows ou Linux. Basta descarregar e executar.</p>
                 </div>
                 <div class="feature">
                     <h3>Segurança com Arquivos Duplicados</h3>
-                    <p>O sistema renomeia automaticamente arquivos com o mesmo nome para garantir que nunca perca nenhuma informação importante.</p>
+                    <p>O sistema renomeia automaticamente arquivos com o mesmo nome para garantir que nunca perca
+                        nenhuma informação importante.</p>
                 </div>
             </div>
         </section>
 
         <section id="before-after">
             <h2>Transforme a sua Área de Trabalho</h2>
-            <p class="center-text">Veja como o script limpa a sua pasta "Downloads" ou pastas de projetos em segundos.</p>
+            <p class="center-text">Veja como o script limpa a sua pasta "Downloads" ou pastas de projetos em segundos.
+            </p>
             <div class="comparison-grid">
                 <div class="comparison-item">
                     <h3>Antes</h3>
