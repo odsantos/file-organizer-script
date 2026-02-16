@@ -12,7 +12,7 @@ include '../header.php';
         <div class="container">
             <h2>Organização Digital para Profissionais</h2>
             <p>Pare de perder tempo à procura de documentos. Organize milhares de processos jurídicos, faturas e arquivos de clientes instantaneamente com apenas um clique.</p>
-            <a href="https://osvaldosantos.gumroad.com/l/file-organizer" class="cta-button">Comprar Agora - Acesso Vitalício</a>
+            <a href="https://osvaldosantos.gumroad.com/l/file-organizer" class="cta-button">Descarregue Agora</a>
         </div>
     </section>
 

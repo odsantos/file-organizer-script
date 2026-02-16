@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: Check out code
@@ -51,11 +51,10 @@ jobs:
         run: >
           pyinstaller
           --name "File Organizer"
-          ${{ matrix.os == 'macos-latest' && '--onedir' || '--onefile' }}
+          --onefile
           --windowed
           --add-data "assets${{ steps.set_separator.outputs.separator }}assets"
           ${{ matrix.os == 'windows-latest' && '--icon "assets/images/app_icon.ico"' || '' }}
-          ${{ matrix.os == 'macos-latest' && '--icon "assets/images/app_icon.icns"' || '' }}
           ${{ matrix.os == 'ubuntu-latest' && '--icon "assets/images/icon-1024x1024.png"' || '' }}
           organizer.py
 
@@ -66,11 +65,6 @@ jobs:
           Compress-Archive -Path "File Organizer.exe" -DestinationPath "../File-Organizer-Windows.zip"
         shell: pwsh
 
-      - name: Package Artifact (macOS)
-        if: matrix.os == 'macos-latest'
-        run: |
-          cd dist
-          zip -r "../File-Organizer-macOS.zip" "File Organizer.app"
 
       - name: Build AppImage (Linux)
         if: matrix.os == 'ubuntu-latest'

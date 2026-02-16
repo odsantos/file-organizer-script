@@ -24,4 +24,4 @@ include '../header.php'; ?>
         echo $formatter->format(time()); 
     ?></em></p>
 </main>
-<?php include '../header.php'; ?>
+<?php include '../footer.php'; ?>
